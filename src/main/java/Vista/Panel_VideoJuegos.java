@@ -22,8 +22,6 @@ import javax.swing.JOptionPane;
  */
 public class Panel_VideoJuegos extends JPanel implements ActionListener {
 
-    private int anchoBoton = 200;
-    private int alturaBoton = 90;
 
     private C_Producto c_producto;
     private Tienda tienda;
@@ -32,10 +30,10 @@ public class Panel_VideoJuegos extends JPanel implements ActionListener {
     public Panel_VideoJuegos(C_Producto c_producto, Tienda tienda) {
         initComponents();
 
-        ponerImagen(game1, "/Img_Games/deepRock.png");
-        ponerImagen(game2, "/Img_Games/counterStrike.png");
-        ponerImagen(game3, "/Img_Games/rust.PNG");
-        ponerImagen(game4, "/Img_Games/sky.PNG");
+        ponerImagen(game1, "/Img_Games/deepRock.png",200,90);
+        ponerImagen(game2, "/Img_Games/counterStrike.png",200,90);
+        ponerImagen(game3, "/Img_Games/rust.PNG",200,90);
+        ponerImagen(game4, "/Img_Games/sky.PNG",200,90);
 
         botonEvent();
 
@@ -51,19 +49,19 @@ public class Panel_VideoJuegos extends JPanel implements ActionListener {
         game4.addActionListener(this);
     }
 
-    private void ponerImagen(JButton boton, String URL) {
+    private void ponerImagen(JButton boton, String URL, int ancho, int altura) {
         ImageIcon icon = new ImageIcon(getClass().getResource(URL));
-        Image image = icon.getImage().getScaledInstance(anchoBoton, alturaBoton, Image.SCALE_SMOOTH);
+        Image image = icon.getImage().getScaledInstance(ancho, altura, Image.SCALE_SMOOTH);
         boton.setIcon(new ImageIcon(image));
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        JButton boton = (JButton) e.getSource();
+        JButton boton = (JButton) e.getSource(); 
         int indice = Integer.parseInt(boton.getText());
         
-        Producto existente = c_producto.buscarProducto(indice + 1); // Verificar si dentro de la lista existe el producto seleccionado
+        Producto existente = c_producto.buscarProducto(indice + 1);
         
         if (existente == null) {
             tienda.setIndice(indice);
@@ -77,7 +75,7 @@ public class Panel_VideoJuegos extends JPanel implements ActionListener {
             cantidadProducto.setLocationRelativeTo(Formulario_Compra.frame_principal);
             cantidadProducto.setVisible(true);
             
-            if(producto != null){
+            if(producto.getCantidad() > 0){
                 c_producto.insertar(producto);
             }
         }else{

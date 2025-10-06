@@ -1,4 +1,4 @@
-package Util;
+package Estructuras_de_Datos;
 
 /**
  *
@@ -80,17 +80,34 @@ public class ListaEnlazada {
 
     public void eliminar(Producto producto) {
         if (inicio != null) {
-            if (inicio.getSiguiente() == null) {
-                eliminarPrincipio();
+            if (inicio.getProducto().equals(producto)) {
+                inicio = inicio.getSiguiente();
+                longitud--;
             } else {
                 p = inicio;
                 while (p.getSiguiente() != null && !p.getSiguiente().getProducto().equals(producto)) {
                     p = p.getSiguiente();
                 }
-                p.setSiguiente(p.getSiguiente().getSiguiente());
+                if(p.getSiguiente() != null && p.getSiguiente().getProducto().equals(producto)){
+                    p.setSiguiente(p.getSiguiente().getSiguiente());
+                    longitud--;
+                }
             }
-            longitud--;
         }
+    }
+    
+    public boolean existe(Producto producto){
+        boolean val = false;
+        if(inicio != null){
+            p = inicio;
+            while(p.getSiguiente()!= null && !p.getProducto().equals(producto)){
+                p = p.getSiguiente();
+            }
+            if(p.getProducto().equals(producto)){
+                val = true;
+            }
+        }
+        return val;
     }
 
     public Producto get(int i){

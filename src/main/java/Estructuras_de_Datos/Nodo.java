@@ -1,5 +1,5 @@
 
-package Util;
+package Estructuras_de_Datos;
 
 /**
  *

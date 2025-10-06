@@ -2,8 +2,9 @@
 package Controlador;
 
 import Modelo.Producto;
-import Util.ListaEnlazada;
+import Estructuras_de_Datos.ListaEnlazada;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -50,5 +51,14 @@ public class C_Producto {
         }
         
     }
+    
+    public void generarImporteFinal(JTextField txt){
+        double suma = 0;
+        for(int i=0 ; i<listProducto.longitud; i++){
+            suma+=listProducto.get(i).getCantidad()*listProducto.get(i).getPrecio();
+        }
+        txt.setText(""+suma);
+    }
+    
     
 }

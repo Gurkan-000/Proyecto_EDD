@@ -140,7 +140,7 @@ public class JDialog_CantidadProducto extends JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BttRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BttRegresarActionPerformed
-        producto = null;
+        producto.setCantidad(0);
         this.dispose();
     }//GEN-LAST:event_BttRegresarActionPerformed
 
