@@ -6,10 +6,10 @@ package Vista;
  * @author RODRIGO
  */
 
-import com.formdev.flatlaf.FlatDarkLaf;
-
+import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMTMaterialDeepOceanIJTheme;
 import javax.swing.JFrame;
 import java.awt.event.ActionEvent;
+
 
 public class Formulario_Presentacion extends JFrame {
 
@@ -19,7 +19,6 @@ public class Formulario_Presentacion extends JFrame {
         
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-        
     }
     
     public void initEvents(){
@@ -28,6 +27,7 @@ public class Formulario_Presentacion extends JFrame {
     
     private void eventBttEmpezar(ActionEvent e){
         Formulario_Principal f_principal = new Formulario_Principal();
+        f_principal.setSize(1015, 620);
         f_principal.setVisible(true);
         this.dispose();
     }
@@ -47,6 +47,8 @@ public class Formulario_Presentacion extends JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(23, 29, 37));
+
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 1, 16)); // NOI18N
         jLabel1.setText("Intengrantes : ");
 
@@ -63,10 +65,13 @@ public class Formulario_Presentacion extends JFrame {
         jLabel8.setText("- Armas Valera, Jose Manuel");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Black", 1, 24)); // NOI18N
-        jLabel3.setText("Titulo del proyecto");
+        jLabel3.setText("Sistema de venta de videojuegos");
 
+        bttEmpezar.setBackground(new java.awt.Color(0, 74, 130));
         bttEmpezar.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        bttEmpezar.setForeground(new java.awt.Color(255, 255, 255));
         bttEmpezar.setText("Empezar");
+        bttEmpezar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -76,19 +81,17 @@ public class Formulario_Presentacion extends JFrame {
                 .addGap(58, 58, 58)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
                         .addComponent(bttEmpezar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(74, 74, 74))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel1))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -132,7 +135,7 @@ public class Formulario_Presentacion extends JFrame {
     public static void main(String args[]) {
         
         try{
-            FlatDarkLaf.setup();
+            FlatMTMaterialDeepOceanIJTheme.setup();
         }catch(Exception e){
             System.out.println("Ocurrio un error en el FlatLaf");
         }
