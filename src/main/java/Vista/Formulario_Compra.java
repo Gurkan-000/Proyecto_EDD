@@ -2,6 +2,7 @@
 package Vista;
 
 import Controlador.C_Producto;
+import Controlador.C_Producto_ListaEnlazada;
 import Modelo.Tienda;
 
 import javax.swing.JFrame;
@@ -25,7 +26,9 @@ public class Formulario_Compra extends JPanel {
     public Formulario_Compra(JFrame frame_principal) {
         initComponents();
         
-        c_producto = new C_Producto();
+        Formulario_Compra.frame_principal = frame_principal;
+        
+        c_producto = new C_Producto_ListaEnlazada();
         tienda = new Tienda();
         p_videoJuegos = new Panel_VideoJuegos(c_producto,tienda);
         

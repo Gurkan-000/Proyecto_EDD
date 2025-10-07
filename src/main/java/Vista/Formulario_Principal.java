@@ -5,6 +5,7 @@ package Vista;
  *
  * @author RODRIGO
  */
+
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
@@ -17,6 +18,7 @@ public class Formulario_Principal extends JFrame {
     public Formulario_Principal() {
         initComponents();
         ponerImagen(labelfoto, "/logo.png");
+        ponerImagen(label_fondo, "/fondo_presentacion.jpg");
         this.setResizable(false);
         this.setLocationRelativeTo(null);
     }

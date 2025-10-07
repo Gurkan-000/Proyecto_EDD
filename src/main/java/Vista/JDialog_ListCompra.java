@@ -6,6 +6,8 @@ package Vista;
  * @author RODRIGO
  */
 
+import Vista.JDialog_CantidadProducto;
+import Vista.Formulario_Compra;
 import Controlador.C_Producto;
 import Modelo.Producto;
 
@@ -34,7 +36,7 @@ public class JDialog_ListCompra extends JDialog {
         visibilidadComp2(false);
         c_producto.llenarTabla(tabla_info);
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

@@ -1,6 +1,8 @@
 
 package Vista;
 
+import Vista.JDialog_CantidadProducto;
+import Vista.Formulario_Compra;
 import Controlador.C_Producto;
 import Modelo.Producto;
 import Modelo.Tienda;

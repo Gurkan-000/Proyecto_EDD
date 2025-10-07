@@ -1,64 +1,27 @@
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package Controlador;
 
 import Modelo.Producto;
-import Estructuras_de_Datos.ListaEnlazada;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author RODRIGO
  */
-public class C_Producto {
+public interface C_Producto {
     
-    private ListaEnlazada listProducto;
+    public Producto buscarProducto(int id);
     
-    public C_Producto(){
-        listProducto = new ListaEnlazada();
-    }
+    public void insertar(Producto producto);
     
-    public Producto buscarProducto(int id){
-        int i = 0;
-        while(i<listProducto.longitud && listProducto.get(i).getId() != id){
-            i++;
-        }
-        return listProducto.get(i);
-    }
+    public void remover(Producto producto);
     
-    public void insertar(Producto producto){
-        listProducto.insertarUltimo(producto);
-    }
+    public void llenarTabla(JTable tabla);
     
-    public void remover(Producto producto){
-        listProducto.eliminar(producto);
-    }
-    
-    public void llenarTabla(JTable tabla){
-        DefaultTableModel dt = (DefaultTableModel) tabla.getModel();
-        dt.setRowCount(0);
-        
-        for(int i=0 ; i<listProducto.longitud ; i++){
-            Object[] datos = new Object[5];
-            datos[0] = listProducto.get(i).getId();
-            datos[1] = listProducto.get(i).getNombre();
-            datos[2] = listProducto.get(i).getPrecio();
-            datos[3] = listProducto.get(i).getCantidad();
-            datos[4] = listProducto.get(i).getCantidad()*listProducto.get(i).getPrecio();
-            
-            dt.addRow(datos);
-        }
-        
-    }
-    
-    public void generarImporteFinal(JTextField txt){
-        double suma = 0;
-        for(int i=0 ; i<listProducto.longitud; i++){
-            suma+=listProducto.get(i).getCantidad()*listProducto.get(i).getPrecio();
-        }
-        txt.setText(""+suma);
-    }
-    
+    public void generarImporteFinal(JTextField txt);
     
 }
