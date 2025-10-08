@@ -13,7 +13,13 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import Controlador.C_Producto;
+import Controlador.C_Producto_Arreglo;
+import Controlador.C_Producto_ListaEnlazada;
+
 public class Formulario_Principal extends JFrame {
+
+    private C_Producto c_producto;
 
     public Formulario_Principal() {
         initComponents();
@@ -215,7 +221,8 @@ public class Formulario_Principal extends JFrame {
 
     
     private void bttListEnlazadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttListEnlazadaActionPerformed
-        Formulario_Compra f_compra = new Formulario_Compra(this);
+        c_producto = new C_Producto_ListaEnlazada();
+        Formulario_Compra f_compra = new Formulario_Compra(this,c_producto,"-- Lista Enlazada --");
         ponerPanel(f_compra);
     }//GEN-LAST:event_bttListEnlazadaActionPerformed
 
@@ -232,7 +239,9 @@ public class Formulario_Principal extends JFrame {
     }//GEN-LAST:event_bttColaActionPerformed
 
     private void bttArregloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttArregloActionPerformed
-
+        c_producto = new C_Producto_Arreglo();
+        Formulario_Compra f_compra = new Formulario_Compra(this,c_producto,"-- Arreglo --");
+        ponerPanel(f_compra);
     }//GEN-LAST:event_bttArregloActionPerformed
 
 

@@ -30,14 +30,14 @@ public class probar {
         list.insertarUltimo(p4);
         
         for(int i=0 ; i<list.longitud ; i++){
-            System.out.println(list.get(i));
+            System.out.println(list.retornar(i));
         }System.out.println();
         
         System.out.println(list.longitud);
         list.eliminar(p1);
         
         for(int i=0 ; i<list.longitud ; i++){
-            System.out.println(i+" "+list.get(i));
+            System.out.println(i+" "+list.retornar(i));
         }System.out.println();
         
         System.out.println(list.mostrar());

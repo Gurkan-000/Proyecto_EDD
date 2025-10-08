@@ -110,7 +110,7 @@ public class ListaEnlazada {
         return val;
     }
 
-    public Producto get(int i){
+    public Producto retornar(int i){
         Producto producto = null;
         if(inicio != null && i<longitud){
             p = inicio;

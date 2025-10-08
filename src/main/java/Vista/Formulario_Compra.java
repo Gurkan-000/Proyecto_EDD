@@ -23,14 +23,16 @@ public class Formulario_Compra extends JPanel {
     
     protected static JFrame frame_principal;
     
-    public Formulario_Compra(JFrame frame_principal) {
+    public Formulario_Compra(JFrame frame_principal, C_Producto c_producto, String nombre) {
         initComponents();
         
         Formulario_Compra.frame_principal = frame_principal;
         
-        c_producto = new C_Producto_ListaEnlazada();
+        this.c_producto = c_producto;
         tienda = new Tienda();
         p_videoJuegos = new Panel_VideoJuegos(c_producto,tienda);
+        
+        label_EstructuraDeDatos.setText(nombre);
         
         ponerScroll(Contenedor);
         ponerPanel(p_videoJuegos);
@@ -45,6 +47,7 @@ public class Formulario_Compra extends JPanel {
         labelTitlte = new javax.swing.JLabel();
         Contenedor = new javax.swing.JPanel();
         BttCarrito = new javax.swing.JButton();
+        label_EstructuraDeDatos = new javax.swing.JLabel();
 
         panel_contenido.setBackground(new java.awt.Color(23, 29, 37));
         panel_contenido.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -71,6 +74,10 @@ public class Formulario_Compra extends JPanel {
             }
         });
         panel_contenido.add(BttCarrito, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 40, 130, 30));
+
+        label_EstructuraDeDatos.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        label_EstructuraDeDatos.setForeground(new java.awt.Color(255, 255, 255));
+        panel_contenido.add(label_EstructuraDeDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -119,6 +126,7 @@ public class Formulario_Compra extends JPanel {
     private javax.swing.JButton BttCarrito;
     private javax.swing.JPanel Contenedor;
     private javax.swing.JLabel labelTitlte;
+    private javax.swing.JLabel label_EstructuraDeDatos;
     private javax.swing.JPanel panel_contenido;
     // End of variables declaration//GEN-END:variables
 }

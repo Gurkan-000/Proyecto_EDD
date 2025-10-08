@@ -22,10 +22,10 @@ public class C_Producto_ListaEnlazada implements C_Producto{
     @Override
     public Producto buscarProducto(int id){
         int i = 0;
-        while(i<listProducto.longitud && listProducto.get(i).getId() != id){
+        while(i<listProducto.longitud && listProducto.retornar(i).getId() != id){
             i++;
         }
-        return listProducto.get(i);
+        return listProducto.retornar(i);
     }
     
     @Override
@@ -45,11 +45,11 @@ public class C_Producto_ListaEnlazada implements C_Producto{
         
         for(int i=0 ; i<listProducto.longitud ; i++){
             Object[] datos = new Object[5];
-            datos[0] = listProducto.get(i).getId();
-            datos[1] = listProducto.get(i).getNombre();
-            datos[2] = listProducto.get(i).getPrecio();
-            datos[3] = listProducto.get(i).getCantidad();
-            datos[4] = listProducto.get(i).getCantidad()*listProducto.get(i).getPrecio();
+            datos[0] = listProducto.retornar(i).getId();
+            datos[1] = listProducto.retornar(i).getNombre();
+            datos[2] = listProducto.retornar(i).getPrecio();
+            datos[3] = listProducto.retornar(i).getCantidad();
+            datos[4] = listProducto.retornar(i).getCantidad()*listProducto.retornar(i).getPrecio();
             
             dt.addRow(datos);
         }
@@ -60,7 +60,7 @@ public class C_Producto_ListaEnlazada implements C_Producto{
     public void generarImporteFinal(JTextField txt){
         double suma = 0;
         for(int i=0 ; i<listProducto.longitud; i++){
-            suma+=listProducto.get(i).getCantidad()*listProducto.get(i).getPrecio();
+            suma+=listProducto.retornar(i).getCantidad()*listProducto.retornar(i).getPrecio();
         }
         txt.setText(""+suma);
     }
