@@ -197,7 +197,6 @@ public class JDialog_ListCompra extends JDialog {
     }//GEN-LAST:event_BttRegresarActionPerformed
 
     private void BttComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BttComprarActionPerformed
-        visibilidadComp2(true);
         c_producto.generarImporteFinal(txtImporteTotal);
         visibilidadComp2(true);
     }//GEN-LAST:event_BttComprarActionPerformed
