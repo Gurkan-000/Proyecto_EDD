@@ -129,18 +129,22 @@ public class Panel_VideoJuegos extends JPanel implements ActionListener {
         label_game3.setText("Rust");
         add(label_game3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 340, -1, -1));
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("S/. 44.00");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 510, 80, -1));
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("S/. 33.00");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 90, 80, -1));
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("S/. 5.00");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 230, 80, -1));
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("S/. 25.00");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 370, 80, -1));
