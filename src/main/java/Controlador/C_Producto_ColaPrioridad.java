@@ -11,34 +11,9 @@ public class C_Producto_ColaPrioridad implements C_Producto {
 
     private ColaDePrioridad cola = new ColaDePrioridad(100);
 
-    @Override
+   @Override
     public void insertar(Producto producto) {
-        // Asigna la prioridad basada en el precio ANTES de incluirlo
-        asignarPrioridadPorPrecio(producto);
-
-        System.out.println("Transfiriendo " + producto.getNombre()
-                + " (S/." + producto.getPrecio()
-                + ") con Prioridad " + producto.getPrioridad());
-
         cola.incluir(producto);
-    }
-
-    /**
-     * MÉTODO NUEVO: Asigna prioridad según rangos de precio.
-     * Prioridad 1: >= S/. 30.0 (Más caros)
-     * Prioridad 2: S/. 10.0 a S/. 29.99 (Medios)
-     * Prioridad 3: < S/. 10.0 (Más baratos)
-     */
-    private void asignarPrioridadPorPrecio(Producto p) {
-        double precio = p.getPrecio();
-
-        if (precio >= 30.0) {
-            p.setPrioridad(1); // Prioridad más alta
-        } else if (precio >= 10.0) {
-            p.setPrioridad(2); // Prioridad media
-        } else {
-            p.setPrioridad(3); // Prioridad más baja
-        }
     }
 
     @Override

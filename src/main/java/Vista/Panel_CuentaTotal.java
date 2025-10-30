@@ -63,23 +63,29 @@ public class Panel_CuentaTotal extends javax.swing.JPanel {
      * Versión especial de llenarTabla que también muestra la prioridad
      */
     public void llenarTablaConPrioridad(javax.swing.JTable tabla) {
-        DefaultTableModel dt = (DefaultTableModel) tabla.getModel();
+      DefaultTableModel dt = (DefaultTableModel) tabla.getModel();
         dt.setRowCount(0);
 
         if (c_cola.estaVacia()) return;
 
         Producto[] productos = c_cola.getCola();
+        
+        int prioridadRank = 1; // <<< 1. AÑADE ESTE CONTADOR
 
-        // Recorremos la cola (que ya está ordenada por prioridad)
+        // Recorremos la cola (que ya está ordenada por importe)
         for (int i = c_cola.getFirst(); i <= c_cola.getLast(); i++) {
             Object[] datos = new Object[6]; // 6 columnas
             datos[0] = productos[i].getId();
             datos[1] = productos[i].getNombre();
             datos[2] = productos[i].getPrecio();
             datos[3] = productos[i].getCantidad();
-            datos[4] = productos[i].getPrioridad(); // ¡La nueva columna!
+            
+            datos[4] = prioridadRank; // <<< 2. USA EL CONTADOR (en lugar de productos[i].getPrioridad())
+            
             datos[5] = productos[i].getCantidad() * productos[i].getPrecio();
             dt.addRow(datos);
+            
+            prioridadRank++; // <<< 3. INCREMENTA EL CONTADOR
         }
     }
 
@@ -186,13 +192,18 @@ public class Panel_CuentaTotal extends javax.swing.JPanel {
     }//GEN-LAST:event_bttRegresarActionPerformed
 
     private void bttPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttPagarActionPerformed
-        // Muestra el mensaje de agradecimiento
+      // Muestra el mensaje de agradecimiento
         JOptionPane.showMessageDialog(this, "gracias por su compra");
-        
-        // (Opcional) Aquí podrías limpiar los carritos y volver al inicio
-        // if (frame_principal instanceof Formulario_Principal) {
-        //     ((Formulario_Principal) frame_principal).resetearPaneles();
-        // }
+
+        // Llama al método en Formulario_Principal para resetear (esto ya incluye volver al inicio)
+        if (frame_principal instanceof Formulario_Principal) {
+             ((Formulario_Principal) frame_principal).resetearCarritos();
+
+             // --- BORRA ESTAS DOS LÍNEAS ---
+             // ((Formulario_Principal) frame_principal).ponerPanel(((Formulario_Principal) frame_principal).panel_arreglo); <--- BORRAR
+             // ((Formulario_Principal) frame_principal).c_ultimoCarrito = ((Formulario_Principal) frame_principal).c_arreglo; <--- BORRAR
+             // ------------------------------
+        }
     }//GEN-LAST:event_bttPagarActionPerformed
 
 

@@ -52,7 +52,6 @@ public class Formulario_Principal extends JFrame {
         
         // Inicia en el panel de arreglo por defecto
         c_ultimoCarrito = c_arreglo;
-        ponerPanel(panel_arreglo);
     }
 
     @SuppressWarnings("unchecked")
@@ -291,7 +290,21 @@ public class Formulario_Principal extends JFrame {
         ponerPanel(panel_arreglo);
         c_ultimoCarrito = c_arreglo;
     }//GEN-LAST:event_bttArregloActionPerformed
-
+    
+    public void resetearCarritos() {
+       if (c_arreglo != null) {
+            c_arreglo.reset();
+        }
+        if (c_lista != null) {
+            c_lista.reset();
+        }
+        // --- AÑADE ESTAS LÍNEAS ---
+        // Vuelve a mostrar el panel de arreglo vacío después de pagar
+        ponerPanel(panel_arreglo);
+        c_ultimoCarrito = c_arreglo;
+        // --------------------------
+        System.out.println("Carritos reseteados y volviendo al panel Arreglo.");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bttArbol;

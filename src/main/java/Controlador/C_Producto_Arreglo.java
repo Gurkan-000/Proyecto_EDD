@@ -52,7 +52,14 @@ public class C_Producto_Arreglo implements C_Producto {
         }
         
     }
-
+    
+    public void reset() {
+        if (array != null) {
+            array.vaciar();
+            System.out.println("Carrito de Arreglo reseteado.");
+        }
+    }
+    
     @Override
     public void generarImporteFinal(JTextField txt) {
         double suma = 0;
