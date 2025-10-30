@@ -64,6 +64,9 @@ public class C_Producto_ListaEnlazada implements C_Producto{
         }
         txt.setText(""+suma);
     }
-    
+
+    public Estructuras_de_Datos.ListaEnlazada getListaInterna() {
+        return listProducto;
+    }
     
 }

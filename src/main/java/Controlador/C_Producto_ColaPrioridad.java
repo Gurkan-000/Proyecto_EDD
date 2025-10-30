@@ -87,4 +87,22 @@ public class C_Producto_ColaPrioridad implements C_Producto {
         }
         txt.setText("" + suma);
     }
+    
+    // --- MÉTODOS NUEVOS PARA EXPONER LA COLA INTERNA ---
+
+    public boolean estaVacia() {
+        return cola.estaVacia();
+    }
+
+    public Producto[] getCola() {
+        return cola.getCola();
+    }
+
+    public int getFirst() {
+        return cola.getFirst();
+    }
+
+    public int getLast() {
+        return cola.getLast();
+    }
 }

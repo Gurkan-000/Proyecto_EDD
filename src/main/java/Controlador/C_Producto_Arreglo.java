@@ -61,5 +61,8 @@ public class C_Producto_Arreglo implements C_Producto {
         }
         txt.setText(""+suma);
     }
-
+    
+    public Estructuras_de_Datos.Arreglo getArregloInterno() {
+        return array;
+    }
 }

@@ -43,7 +43,14 @@ public class Panel_VideoJuegos extends JPanel implements ActionListener {
         this.c_producto = c_producto;
         this.tienda = tienda;
     }
-
+    
+    /**
+     * MÉTODO NUEVO: Para que Formulario_Compra actualice este panel.
+     */
+    public void setControlador(C_Producto c_producto) {
+        this.c_producto = c_producto;
+    }
+    
     private void botonEvent() {
         game1.addActionListener(this);
         game2.addActionListener(this);

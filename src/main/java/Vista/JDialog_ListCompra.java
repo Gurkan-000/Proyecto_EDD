@@ -10,6 +10,10 @@ import Vista.JDialog_CantidadProducto;
 import Vista.Formulario_Compra;
 import Controlador.C_Producto;
 import Modelo.Producto;
+import Controlador.C_Producto_Arreglo;
+import Controlador.C_Producto_ListaEnlazada;
+import Estructuras_de_Datos.Arreglo;
+import Estructuras_de_Datos.ListaEnlazada;
 
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -197,8 +201,47 @@ public class JDialog_ListCompra extends JDialog {
     }//GEN-LAST:event_BttRegresarActionPerformed
 
     private void BttComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BttComprarActionPerformed
-        c_producto.generarImporteFinal(txtImporteTotal);
-        visibilidadComp2(true);
+        // Este JDialog AHORA solo se usa para Arreglo y Lista,
+        // así que ya no necesitamos la lógica de "instanceof C_Producto_ColaPrioridad"
+
+        Producto[] productosATransferir = null;
+
+        // --- Copiamos los productos a un arreglo temporal ---
+
+        if (c_producto instanceof C_Producto_Arreglo) {
+
+            C_Producto_Arreglo c_arreglo = (C_Producto_Arreglo) c_producto;
+            Arreglo arrInterno = c_arreglo.getArregloInterno();
+            int tamano = arrInterno.ultIndice + 1;
+
+            productosATransferir = new Producto[tamano];
+
+            for(int i = 0; i < tamano; i++) {
+                productosATransferir[i] = arrInterno.getArreglo()[i];
+            }
+
+        } else if (c_producto instanceof C_Producto_ListaEnlazada) {
+
+            C_Producto_ListaEnlazada c_lista = (C_Producto_ListaEnlazada) c_producto;
+            ListaEnlazada listaInterna = c_lista.getListaInterna();
+            int tamano = listaInterna.longitud;
+
+            productosATransferir = new Producto[tamano];
+
+            for(int i = 0; i < tamano; i++) {
+                productosATransferir[i] = listaInterna.retornar(i);
+            }
+        }
+
+        // --- Fin de la copia ---
+
+        // 1. Llama al método público de Formulario_Principal
+        if (frame_principal instanceof Formulario_Principal) {
+            ((Formulario_Principal) frame_principal).mostrarCuentaTotal(productosATransferir);
+        }
+
+        // 2. Cerrar este carrito actual
+        this.dispose();
     }//GEN-LAST:event_BttComprarActionPerformed
 
     private void BttEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BttEliminarActionPerformed

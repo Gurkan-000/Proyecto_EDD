@@ -16,10 +16,21 @@ import javax.swing.JPanel;
 import Controlador.C_Producto;
 import Controlador.C_Producto_Arreglo;
 import Controlador.C_Producto_ListaEnlazada;
+import Modelo.Producto;
 
 public class Formulario_Principal extends JFrame {
 
-    private C_Producto c_producto;
+   // --- Definir todos los controladores y paneles aquí ---
+    private C_Producto_Arreglo c_arreglo;
+    private C_Producto_ListaEnlazada c_lista;
+    // (Ya no necesitamos c_cola aquí, el panel de cuenta lo maneja)
+    
+    private Formulario_Compra panel_arreglo;
+    private Formulario_Compra panel_lista;
+    private Panel_CuentaTotal panel_cuenta; // ¡El nuevo panel!
+    
+    // Variable para recordar a dónde "regresar"
+    private C_Producto c_ultimoCarrito;
 
     public Formulario_Principal() {
         initComponents();
@@ -27,6 +38,21 @@ public class Formulario_Principal extends JFrame {
         ponerImagen(label_fondo, "/fondo_presentacion.jpg");
         this.setResizable(false);
         this.setLocationRelativeTo(null);
+        
+        // --- Crear todas las instancias en el constructor ---
+        
+        // 1. Crear controladores
+        c_arreglo = new C_Producto_Arreglo();
+        c_lista = new C_Producto_ListaEnlazada();
+
+        // 2. Crear paneles
+        panel_arreglo = new Formulario_Compra(this, c_arreglo, "-- Arreglo --");
+        panel_lista = new Formulario_Compra(this, c_lista, "-- Lista Enlazada --");
+        panel_cuenta = new Panel_CuentaTotal(this); // ¡El nuevo panel!
+        
+        // Inicia en el panel de arreglo por defecto
+        c_ultimoCarrito = c_arreglo;
+        ponerPanel(panel_arreglo);
     }
 
     @SuppressWarnings("unchecked")
@@ -218,12 +244,34 @@ public class Formulario_Principal extends JFrame {
         panel_contenido.revalidate();
         panel_contenido.repaint();
     }
+    
+    public void mostrarCuentaTotal(Producto[] productos) {
+        // 1. Pasa los productos y el carrito original al panel de cuenta
+        panel_cuenta.mostrarCuenta(productos, c_ultimoCarrito);
+        
+        // 2. Muestra el panel de cuenta
+        ponerPanel(panel_cuenta);
+    }
+    
+    public void regresarAlCarrito(C_Producto c_carritoOriginal) {
+        // 1. Muestra el panel de compra original
+        if (c_carritoOriginal instanceof C_Producto_Arreglo) {
+            ponerPanel(panel_arreglo);
+        } else if (c_carritoOriginal instanceof C_Producto_ListaEnlazada) {
+            ponerPanel(panel_lista);
+        }
 
+        // 2. Re-abre el JDialog del carrito
+        JDialog_ListCompra compras = new JDialog_ListCompra(this, c_carritoOriginal);
+        compras.setSize(818, 550);
+        compras.setLocationRelativeTo(this);
+        compras.setVisible(true);
+    }
     
     private void bttListEnlazadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttListEnlazadaActionPerformed
-        c_producto = new C_Producto_ListaEnlazada();
-        Formulario_Compra f_compra = new Formulario_Compra(this,c_producto,"-- Lista Enlazada --");
-        ponerPanel(f_compra);
+      // Muestra el panel y guarda este controlador como el "último"
+        ponerPanel(panel_lista);
+        c_ultimoCarrito = c_lista;
     }//GEN-LAST:event_bttListEnlazadaActionPerformed
 
     private void bttPilaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttPilaActionPerformed
@@ -235,13 +283,13 @@ public class Formulario_Principal extends JFrame {
     }//GEN-LAST:event_bttArbolActionPerformed
 
     private void bttColaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttColaActionPerformed
-
+        ponerPanel(panel_cuenta);
     }//GEN-LAST:event_bttColaActionPerformed
 
     private void bttArregloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttArregloActionPerformed
-        c_producto = new C_Producto_Arreglo();
-        Formulario_Compra f_compra = new Formulario_Compra(this,c_producto,"-- Arreglo --");
-        ponerPanel(f_compra);
+       // Muestra el panel y guarda este controlador como el "último"
+        ponerPanel(panel_arreglo);
+        c_ultimoCarrito = c_arreglo;
     }//GEN-LAST:event_bttArregloActionPerformed
 
 
