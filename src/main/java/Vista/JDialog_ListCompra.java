@@ -226,6 +226,7 @@ public class JDialog_ListCompra extends JDialog {
             buscado.setCantidad(cantidadAnterior);
         } 
         
+        visibilidadComp1(false);
     }//GEN-LAST:event_BttActualizarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

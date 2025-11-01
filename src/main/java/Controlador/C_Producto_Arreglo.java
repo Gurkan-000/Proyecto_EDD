@@ -32,7 +32,6 @@ public class C_Producto_Arreglo implements C_Producto {
 
     @Override
     public void remover(Producto producto) {
-        System.out.println("Entro al metodo");
         array.eliminar(producto);
     }
 
