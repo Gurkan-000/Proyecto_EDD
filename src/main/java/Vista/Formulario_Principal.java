@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import Controlador.C_Producto;
 import Controlador.C_Producto_Arreglo;
 import Controlador.C_Producto_ListaEnlazada;
+import Controlador.C_Producto_Pilas;
 
 public class Formulario_Principal extends JFrame {
 
@@ -227,7 +228,9 @@ public class Formulario_Principal extends JFrame {
     }//GEN-LAST:event_bttListEnlazadaActionPerformed
 
     private void bttPilaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttPilaActionPerformed
-
+        c_producto = new C_Producto_Pilas();
+        Formulario_Compra f_compra = new Formulario_Compra(this,c_producto,"-- Pilas --");
+        ponerPanel(f_compra);
     }//GEN-LAST:event_bttPilaActionPerformed
 
     private void bttArbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttArbolActionPerformed
