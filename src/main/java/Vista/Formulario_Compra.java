@@ -97,9 +97,7 @@ public class Formulario_Compra extends JPanel {
 
     private void BttCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BttCarritoActionPerformed
         JDialog_ListCompra compras = new JDialog_ListCompra(frame_principal, c_producto);
-        compras.setSize(818, 550);
-        compras.setLocationRelativeTo(this);
-        compras.setVisible(true);
+      abrirCarrito();
     }//GEN-LAST:event_BttCarritoActionPerformed
 
     private void ponerScroll(JPanel panel){
@@ -120,6 +118,27 @@ public class Formulario_Compra extends JPanel {
         Contenedor.add(panel);
         Contenedor.revalidate();
         Contenedor.repaint();
+    }
+
+    /**
+     * MÉTODO NUEVO: Para abrir el carrito desde fuera (desde Formulario_Principal).
+     */
+    public void abrirCarrito() {
+        JDialog_ListCompra compras = new JDialog_ListCompra(frame_principal, c_producto);
+        compras.setSize(818, 550);
+        compras.setLocationRelativeTo(this);
+        compras.setVisible(true);
+    }
+    
+    /**
+     * MÉTODO NUEVO: Para que Formulario_Principal actualice el controlador.
+     */
+    public void setControlador(C_Producto c_producto) {
+        this.c_producto = c_producto;
+        // Actualiza también el controlador del panel de juegos
+        if (p_videoJuegos != null) {
+            p_videoJuegos.setControlador(c_producto);
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

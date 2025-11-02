@@ -57,6 +57,10 @@ public class Panel_VideoJuegos extends JPanel implements ActionListener {
         boton.setIcon(new ImageIcon(image));
     }
 
+    public void setControlador(C_Producto c_producto) {
+        this.c_producto = c_producto;
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
 

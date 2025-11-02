@@ -65,5 +65,15 @@ public class C_Producto_ListaEnlazada implements C_Producto{
         txt.setText(""+suma);
     }
     
+    public void reset() {
+        if (listProducto != null) {
+            listProducto.vaciar();
+            System.out.println("Carrito de Lista Enlazada reseteado.");
+        }
+    }
+    
+    public Estructuras_de_Datos.ListaEnlazada getListaInterna() {
+        return listProducto;
+    }
     
 }
