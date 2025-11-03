@@ -50,47 +50,31 @@ public class ColaDePrioridad {
             int i = last;
             double importeNuevo = producto.getCantidad() * producto.getPrecio();
             
-            // --- Bandera para controlar el bucle ---
             boolean seguirComparando = true; 
-            // ----------------------------------------
 
-            // --- Lógica de Comparación Modificada (sin break) ---
-            // Mientras estemos dentro de la cola Y sigamos comparando...
-            while (i >= first && seguirComparando) { // <<< Condición modificada
+            while (i >= first && seguirComparando) {
                 double importeActual = cola[i].getCantidad() * cola[i].getPrecio();
-
                 boolean mover = false; 
 
-                // Condición 1: ¿El nuevo importe es MAYOR que el actual?
                 if (importeNuevo > importeActual) {
                     mover = true;
                 }
-                // Condición 2 (Desempate): ¿Importes IGUALES Y ID nuevo MENOR?
                 else if (importeNuevo == importeActual && producto.getId() < cola[i].getId()) {
                     mover = true;
                 }
 
-                // Si hay que mover, desplazamos y continuamos
                 if (mover) {
                     cola[i + 1] = cola[i]; 
                     i--; 
                 } else {
-                    // Si NO hay que mover, hemos encontrado el lugar.
-                    // Detenemos el bucle en la SIGUIENTE iteración.
-                    seguirComparando = false; // <<< Reemplaza el break
+                    seguirComparando = false; 
                 }
             }
-            // ----------------------------------------------------
-
-            // Insertamos el nuevo producto en la posición encontrada
             cola[i + 1] = producto;
             last++; 
         }
     }
 
-    /**
-     * Adaptado con un solo return.
-     */
     public Producto eliminar() {
         Producto valor = null;
         if (!estaVacia()) {
@@ -100,23 +84,17 @@ public class ColaDePrioridad {
                 colaVacia();
             }
         }
-        return valor; // Único return
+        return valor;
     }
 
-    /**
-     * Adaptado con un solo return.
-     */
     public Producto acceso() {
         Producto valor = null;
         if (!estaVacia()) {
             valor = cola[first];
         }
-        return valor; // Único return
+        return valor;
     }
 
-    /**
-     * Adaptado con un solo return.
-     */
     public Producto buscarPorId(int id) {
         Producto encontrado = null;
         if (!estaVacia()) {
@@ -126,17 +104,14 @@ public class ColaDePrioridad {
             while (i <= last && seguirBuscando) {
                 if (cola[i].getId() == id) {
                     encontrado = cola[i];
-                    seguirBuscando = false; // Para detener el bucle
+                    seguirBuscando = false;
                 }
                 i++;
             }
         }
-        return encontrado; // Único return
+        return encontrado;
     }
 
-    /**
-     * Adaptado al estilo if-else (sin return temprano).
-     */
     public void removerEspecifico(Producto producto) {
         if (!estaVacia()) {
             int i = first;

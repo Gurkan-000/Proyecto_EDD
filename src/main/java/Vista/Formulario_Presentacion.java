@@ -72,6 +72,11 @@ public class Formulario_Presentacion extends JFrame {
         bttEmpezar.setForeground(new java.awt.Color(255, 255, 255));
         bttEmpezar.setText("Empezar");
         bttEmpezar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bttEmpezar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttEmpezarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -131,6 +136,10 @@ public class Formulario_Presentacion extends JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bttEmpezarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttEmpezarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bttEmpezarActionPerformed
     
     public static void main(String args[]) {
         

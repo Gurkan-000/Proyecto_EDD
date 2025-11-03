@@ -9,19 +9,15 @@ import javax.swing.table.DefaultTableModel;
 
 public class Panel_CuentaTotal extends javax.swing.JPanel {
 
-    private C_Producto_ColaPrioridad c_cola; // Este panel USA la cola de prioridad
+    private C_Producto_ColaPrioridad c_cola;
     private JFrame frame_principal;
-    private C_Producto c_carritoOriginal; // Para saber a dónde "regresar"
+    private C_Producto c_carritoOriginal;
 
-    /**
-     * Creates new form Panel_CuentaTotal
-     */
     public Panel_CuentaTotal(JFrame frame) {
         initComponents();
         this.frame_principal = frame;
         this.c_cola = new C_Producto_ColaPrioridad();
         
-        // Configura la tabla
         tabla_cuenta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {},
             new String [] {
@@ -36,59 +32,39 @@ public class Panel_CuentaTotal extends javax.swing.JPanel {
             }
         });
         
-        // Desactiva el campo de texto total
         txtTotal.setEditable(false);
     }
 
-    /**
-     * Este método es llamado desde Formulario_Principal.
-     * Recibe los productos, los ordena por prioridad y los muestra.
-     */
     public void mostrarCuenta(Producto[] productos, C_Producto c_carritoOriginal) {
-        // 1. Guarda el carrito original por si el usuario quiere "regresar"
         this.c_carritoOriginal = c_carritoOriginal;
-        
-        // 2. Limpia la cola y la recarga con los productos (esto los ordena)
         this.c_cola = new C_Producto_ColaPrioridad();
-        for (Producto p : productos) {
-            c_cola.insertar(p);
+        if (productos != null) {
+            for (Producto p : productos) {
+                c_cola.insertar(p);
+            }
         }
-        
-        // 3. Llena la tabla y el total (usando una versión modificada de llenarTabla)
         llenarTablaConPrioridad(tabla_cuenta);
         c_cola.generarImporteFinal(txtTotal);
     }
     
-    /**
-     * Versión especial de llenarTabla que también muestra la prioridad
-     */
     public void llenarTablaConPrioridad(javax.swing.JTable tabla) {
       DefaultTableModel dt = (DefaultTableModel) tabla.getModel();
         dt.setRowCount(0);
-
         if (c_cola.estaVacia()) return;
-
         Producto[] productos = c_cola.getCola();
-        
-        int prioridadRank = 1; // <<< 1. AÑADE ESTE CONTADOR
-
-        // Recorremos la cola (que ya está ordenada por importe)
+        int prioridadRank = 1; 
         for (int i = c_cola.getFirst(); i <= c_cola.getLast(); i++) {
-            Object[] datos = new Object[6]; // 6 columnas
+            Object[] datos = new Object[6];
             datos[0] = productos[i].getId();
             datos[1] = productos[i].getNombre();
             datos[2] = productos[i].getPrecio();
             datos[3] = productos[i].getCantidad();
-            
-            datos[4] = prioridadRank; // <<< 2. USA EL CONTADOR (en lugar de productos[i].getPrioridad())
-            
+            datos[4] = prioridadRank; 
             datos[5] = productos[i].getCantidad() * productos[i].getPrecio();
             dt.addRow(datos);
-            
-            prioridadRank++; // <<< 3. INCREMENTA EL CONTADOR
+            prioridadRank++;
         }
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -185,27 +161,17 @@ public class Panel_CuentaTotal extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bttRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttRegresarActionPerformed
-        // Llama al método en Formulario_Principal para volver al carrito
         if (frame_principal instanceof Formulario_Principal) {
             ((Formulario_Principal) frame_principal).regresarAlCarrito(c_carritoOriginal);
         }
     }//GEN-LAST:event_bttRegresarActionPerformed
 
     private void bttPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttPagarActionPerformed
-      // Muestra el mensaje de agradecimiento
         JOptionPane.showMessageDialog(this, "gracias por su compra");
-
-        // Llama al método en Formulario_Principal para resetear (esto ya incluye volver al inicio)
         if (frame_principal instanceof Formulario_Principal) {
              ((Formulario_Principal) frame_principal).resetearCarritos();
-
-             // --- BORRA ESTAS DOS LÍNEAS ---
-             // ((Formulario_Principal) frame_principal).ponerPanel(((Formulario_Principal) frame_principal).panel_arreglo); <--- BORRAR
-             // ((Formulario_Principal) frame_principal).c_ultimoCarrito = ((Formulario_Principal) frame_principal).c_arreglo; <--- BORRAR
-             // ------------------------------
         }
     }//GEN-LAST:event_bttPagarActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bttPagar;

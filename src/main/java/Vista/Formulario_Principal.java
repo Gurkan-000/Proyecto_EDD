@@ -1,4 +1,3 @@
-
 package Vista;
 
 /**
@@ -7,30 +6,30 @@ package Vista;
  */
 
 import java.awt.Image;
-
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
-import Controlador.C_Producto;
+import Controlador.C_Producto; 
 import Controlador.C_Producto_Arreglo;
 import Controlador.C_Producto_ListaEnlazada;
+import Controlador.C_Producto_Pilas; // De la base
 import Modelo.Producto;
 
 public class Formulario_Principal extends JFrame {
 
-   // --- Definir todos los controladores y paneles aquí ---
+    // --- Variables de tu respaldo (Mikeloonn) ---
     private C_Producto_Arreglo c_arreglo;
     private C_Producto_ListaEnlazada c_lista;
-    // (Ya no necesitamos c_cola aquí, el panel de cuenta lo maneja)
-    
     private Formulario_Compra panel_arreglo;
     private Formulario_Compra panel_lista;
-    private Panel_CuentaTotal panel_cuenta; // ¡El nuevo panel!
-    
-    // Variable para recordar a dónde "regresar"
+    private Panel_CuentaTotal panel_cuenta;
     private C_Producto c_ultimoCarrito;
+    
+    // --- Variables de la base (Gurkan-000) ---
+    private C_Producto_Pilas c_pila;
+    private Formulario_Compra panel_pila;
+    // (La variable 'c_producto' general ya no se usa)
 
     public Formulario_Principal() {
         initComponents();
@@ -39,19 +38,15 @@ public class Formulario_Principal extends JFrame {
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         
-        // --- Crear todas las instancias en el constructor ---
-        
-        // 1. Crear controladores
+        // --- Inicialización de *todos* los controladores y paneles ---
         c_arreglo = new C_Producto_Arreglo();
         c_lista = new C_Producto_ListaEnlazada();
-
-        // 2. Crear paneles
+        c_pila = new C_Producto_Pilas(); // De la base
+        
         panel_arreglo = new Formulario_Compra(this, c_arreglo, "-- Arreglo --");
         panel_lista = new Formulario_Compra(this, c_lista, "-- Lista Enlazada --");
-        panel_cuenta = new Panel_CuentaTotal(this); // ¡El nuevo panel!
-        
-        // Inicia en el panel de arreglo por defecto
-        c_ultimoCarrito = c_arreglo;
+        panel_pila = new Formulario_Compra(this, c_pila, "-- Pilas --"); // De la base
+        panel_cuenta = new Panel_CuentaTotal(this);
     }
 
     @SuppressWarnings("unchecked")
@@ -237,59 +232,32 @@ public class Formulario_Principal extends JFrame {
 
     private void ponerPanel(JPanel panel) {
         panel.setSize(730, 600);
-
         panel_contenido.removeAll();
         panel_contenido.add(panel);
         panel_contenido.revalidate();
         panel_contenido.repaint();
     }
     
+    // --- Métodos de tu respaldo (Mikeloonn) ---
     public void mostrarCuentaTotal(Producto[] productos) {
-        // 1. Pasa los productos y el carrito original al panel de cuenta
         panel_cuenta.mostrarCuenta(productos, c_ultimoCarrito);
-        
-        // 2. Muestra el panel de cuenta
         ponerPanel(panel_cuenta);
     }
     
     public void regresarAlCarrito(C_Producto c_carritoOriginal) {
-        // 1. Muestra el panel de compra original
         if (c_carritoOriginal instanceof C_Producto_Arreglo) {
             ponerPanel(panel_arreglo);
         } else if (c_carritoOriginal instanceof C_Producto_ListaEnlazada) {
             ponerPanel(panel_lista);
+        } else if (c_carritoOriginal instanceof C_Producto_Pilas) { // MERGE
+            ponerPanel(panel_pila);
         }
 
-        // 2. Re-abre el JDialog del carrito
         JDialog_ListCompra compras = new JDialog_ListCompra(this, c_carritoOriginal);
         compras.setSize(818, 550);
         compras.setLocationRelativeTo(this);
         compras.setVisible(true);
     }
-    
-    private void bttListEnlazadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttListEnlazadaActionPerformed
-      // Muestra el panel y guarda este controlador como el "último"
-        ponerPanel(panel_lista);
-        c_ultimoCarrito = c_lista;
-    }//GEN-LAST:event_bttListEnlazadaActionPerformed
-
-    private void bttPilaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttPilaActionPerformed
-
-    }//GEN-LAST:event_bttPilaActionPerformed
-
-    private void bttArbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttArbolActionPerformed
-
-    }//GEN-LAST:event_bttArbolActionPerformed
-
-    private void bttColaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttColaActionPerformed
-        ponerPanel(panel_cuenta);
-    }//GEN-LAST:event_bttColaActionPerformed
-
-    private void bttArregloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttArregloActionPerformed
-       // Muestra el panel y guarda este controlador como el "último"
-        ponerPanel(panel_arreglo);
-        c_ultimoCarrito = c_arreglo;
-    }//GEN-LAST:event_bttArregloActionPerformed
     
     public void resetearCarritos() {
        if (c_arreglo != null) {
@@ -298,13 +266,39 @@ public class Formulario_Principal extends JFrame {
         if (c_lista != null) {
             c_lista.reset();
         }
-        // --- AÑADE ESTAS LÍNEAS ---
-        // Vuelve a mostrar el panel de arreglo vacío después de pagar
+        if (c_pila != null) {
+            // Asumiendo que añades un método reset() a C_Producto_Pilas
+            // c_pila.reset(); 
+        }
         ponerPanel(panel_arreglo);
         c_ultimoCarrito = c_arreglo;
-        // --------------------------
         System.out.println("Carritos reseteados y volviendo al panel Arreglo.");
     }
+    
+    // --- Métodos de botones (Fusionados) ---
+    
+    private void bttListEnlazadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttListEnlazadaActionPerformed
+        ponerPanel(panel_lista);
+        c_ultimoCarrito = c_lista;
+    }//GEN-LAST:event_bttListEnlazadaActionPerformed
+
+    private void bttPilaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttPilaActionPerformed
+        ponerPanel(panel_pila);
+        c_ultimoCarrito = c_pila;
+    }//GEN-LAST:event_bttPilaActionPerformed
+
+    private void bttArbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttArbolActionPerformed
+        // Vacío
+    }//GEN-LAST:event_bttArbolActionPerformed
+
+    private void bttColaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttColaActionPerformed
+        ponerPanel(panel_cuenta);
+    }//GEN-LAST:event_bttColaActionPerformed
+
+    private void bttArregloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttArregloActionPerformed
+       ponerPanel(panel_arreglo);
+       c_ultimoCarrito = c_arreglo;
+    }//GEN-LAST:event_bttArregloActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bttArbol;

@@ -63,15 +63,10 @@ public class Arreglo {
             ultIndice--;
         }
     }
-    
+
     public void vaciar() {
-        // Opcional: podrías poner null en cada posición si quieres liberar memoria antes
-        // for (int i = 0; i <= ultIndice; i++) {
-        //     array[i] = null;
-        // }
-        ultIndice = -1; // Esto es lo fundamental
+        ultIndice = -1;
     }
-    
     public String mostrar(){
         String cadena = "";
         for(int i=0 ; i<=ultIndice ; i++){

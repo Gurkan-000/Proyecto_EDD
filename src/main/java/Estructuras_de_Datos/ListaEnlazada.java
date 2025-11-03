@@ -96,12 +96,6 @@ public class ListaEnlazada {
         }
     }
     
-    public void vaciar() {
-        inicio = null;
-        longitud = 0;
-        // El recolector de basura de Java se encargará de los nodos huérfanos.
-    }
-    
     public boolean existe(Producto producto){
         boolean val = false;
         if(inicio != null){
@@ -129,6 +123,11 @@ public class ListaEnlazada {
         }
         return producto;
     }
+
+    public void vaciar() {
+        inicio = null;
+        longitud = 0;
+    }
     
     public String mostrar() {
         String cadena = "";
@@ -141,5 +140,7 @@ public class ListaEnlazada {
 
         return cadena;
     }
+
+    
 
 }

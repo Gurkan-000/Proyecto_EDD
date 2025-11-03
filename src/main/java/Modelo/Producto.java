@@ -54,6 +54,7 @@ public class Producto {
         this.precio = precio;
     }
 
+    
     public int getPrioridad() {
         return prioridad;
     }

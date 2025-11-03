@@ -6,7 +6,6 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-// Esta clase implementa la interfaz C_Producto original (con voids)
 public class C_Producto_ColaPrioridad implements C_Producto {
 
     private ColaDePrioridad cola = new ColaDePrioridad(100);
@@ -30,19 +29,14 @@ public class C_Producto_ColaPrioridad implements C_Producto {
     public void llenarTabla(JTable tabla) {
         DefaultTableModel dt = (DefaultTableModel) tabla.getModel();
         dt.setRowCount(0);
-
-        if (cola.estaVacia()) {
-        }
-
+        if (cola.estaVacia()) return;
         Producto[] productos = cola.getCola();
-
         for (int i = cola.getFirst(); i <= cola.getLast(); i++) {
             Object[] datos = new Object[5];
             datos[0] = productos[i].getId();
             datos[1] = productos[i].getNombre();
             datos[2] = productos[i].getPrecio();
             datos[3] = productos[i].getCantidad();
-            // (Opcional: puedes mostrar productos[i].getPrioridad() en la tabla)
             datos[4] = productos[i].getCantidad() * productos[i].getPrecio();
             dt.addRow(datos);
         }
@@ -51,11 +45,10 @@ public class C_Producto_ColaPrioridad implements C_Producto {
     @Override
     public void generarImporteFinal(JTextField txt) {
         double suma = 0;
-
         if (cola.estaVacia()) {
             txt.setText("0.0");
+            return; // Añadido para consistencia
         }
-
         Producto[] productos = cola.getCola();
         for (int i = cola.getFirst(); i <= cola.getLast(); i++) {
             suma += productos[i].getCantidad() * productos[i].getPrecio();
@@ -64,19 +57,15 @@ public class C_Producto_ColaPrioridad implements C_Producto {
     }
     
     // --- MÉTODOS NUEVOS PARA EXPONER LA COLA INTERNA ---
-
     public boolean estaVacia() {
         return cola.estaVacia();
     }
-
     public Producto[] getCola() {
         return cola.getCola();
     }
-
     public int getFirst() {
         return cola.getFirst();
     }
-
     public int getLast() {
         return cola.getLast();
     }
