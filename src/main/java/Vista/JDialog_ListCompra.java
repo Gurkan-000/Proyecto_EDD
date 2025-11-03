@@ -5,24 +5,15 @@ package Vista;
  * @author RODRIGO
  */
 
-import Vista.JDialog_CantidadProducto;
-import Vista.Formulario_Compra;
+
 import Controlador.C_Producto;
 import Modelo.Producto;
-import Controlador.C_Producto_Arreglo;
-import Controlador.C_Producto_ListaEnlazada;
-import Estructuras_de_Datos.Arreglo;
-import Estructuras_de_Datos.ListaEnlazada;
-
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
-import Controlador.C_Producto_Arreglo;
-import Controlador.C_Producto_ListaEnlazada;
-import Estructuras_de_Datos.Arreglo;
-import Estructuras_de_Datos.ListaEnlazada;
+import Controlador.C_Producto_Cola;
 
 public class JDialog_ListCompra extends JDialog {
     
@@ -204,56 +195,56 @@ public class JDialog_ListCompra extends JDialog {
     }//GEN-LAST:event_BttRegresarActionPerformed
 
     private void BttComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BttComprarActionPerformed
-     Producto[] productosATransferir = null;
-
-        if (c_producto instanceof C_Producto_Arreglo) {
-            C_Producto_Arreglo c_arreglo = (C_Producto_Arreglo) c_producto;
-            Arreglo arrInterno = c_arreglo.getArregloInterno();
-            int tamano = arrInterno.ultIndice + 1;
-            productosATransferir = new Producto[tamano];
-            for(int i = 0; i < tamano; i++) {
-                productosATransferir[i] = arrInterno.getArreglo()[i];
-            }
-        } else if (c_producto instanceof C_Producto_ListaEnlazada) {
-            C_Producto_ListaEnlazada c_lista = (C_Producto_ListaEnlazada) c_producto;
-            ListaEnlazada listaInterna = c_lista.getListaInterna();
-            int tamano = listaInterna.longitud;
-            productosATransferir = new Producto[tamano];
-            for(int i = 0; i < tamano; i++) {
-                productosATransferir[i] = listaInterna.retornar(i);
-            }
-        }
-
-        if (frame_principal instanceof Formulario_Principal) {
-            ((Formulario_Principal) frame_principal).mostrarCuentaTotal(productosATransferir);
-        }
-        this.dispose();
+    c_producto.generarImporteFinal(txtImporteTotal);
+    visibilidadComp2(true);
     }//GEN-LAST:event_BttComprarActionPerformed
 
     private void BttEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BttEliminarActionPerformed
-        c_producto.remover(buscado);
-        c_producto.llenarTabla(tabla_info);
-        visibilidadComp1(false);
+     // Comprueba si estamos en el controlador de Cola
+    if (c_producto instanceof C_Producto_Cola) {
+        // Llama a remover (que ignorará 'buscado' y eliminará por prioridad)
+        c_producto.remover(null); 
+    } else {
+        // Funcionalidad original para Arreglo, Lista y Pila
+        if (buscado != null) {
+            c_producto.remover(buscado);
+            buscado = null; // Deselecciona después de borrar
+        }
+    }
+    c_producto.llenarTabla(tabla_info);
+    visibilidadComp1(false); // Oculta botones después de la acción
     }//GEN-LAST:event_BttEliminarActionPerformed
 
     private void tabla_infoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_infoMousePressed
-        int fila = tabla_info.rowAtPoint(evt.getPoint());
+      int fila = tabla_info.rowAtPoint(evt.getPoint());
+    if (fila >= 0) {
         buscado = c_producto.buscarProducto((Integer)tabla_info.getValueAt(fila, 0));
+        // Si estamos en la Cola, el botón 'X' se activa pero 'buscado' no se usará
+        // para la eliminación, solo para la actualización.
         visibilidadComp1(true);
+    } else {
+        visibilidadComp1(false);
+        buscado = null;
+    }
     }//GEN-LAST:event_tabla_infoMousePressed
 
     private void BttActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BttActualizarActionPerformed
+       if (buscado != null) { // Solo actualiza si hay algo seleccionado
         int cantidadAnterior = buscado.getCantidad();
-        
+
         JDialog_CantidadProducto cantidadProducto = new JDialog_CantidadProducto(frame_principal, buscado);
         cantidadProducto.setLocationRelativeTo(Formulario_Compra.frame_principal);
         cantidadProducto.setVisible(true);
-        
+
         if(buscado.getCantidad() != 0){
             c_producto.llenarTabla(tabla_info);
         }else{
             buscado.setCantidad(cantidadAnterior);
-        } 
+        }
+    }
+    // Deselecciona y oculta botones después de la acción
+    buscado = null; 
+    visibilidadComp1(false);
         
     }//GEN-LAST:event_BttActualizarActionPerformed
 

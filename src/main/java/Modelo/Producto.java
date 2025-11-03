@@ -11,8 +11,6 @@ public class Producto {
     private String nombre;
     private int cantidad;
     private double precio;
-    private int prioridad;
-    
     public Producto() {}
 
     public Producto(int id, String nombre, int cantidad, double precio) {
@@ -52,15 +50,6 @@ public class Producto {
 
     public void setPrecio(double precio) {
         this.precio = precio;
-    }
-
-    
-    public int getPrioridad() {
-        return prioridad;
-    }
-
-    public void setPrioridad(int prioridad) {
-        this.prioridad = prioridad;
     }
 
     @Override

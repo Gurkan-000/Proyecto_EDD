@@ -52,13 +52,7 @@ public class C_Producto_Arreglo implements C_Producto {
         }
         
     }
-    
-    public void reset() {
-        if (array != null) {
-            array.vaciar();
-            System.out.println("Carrito de Arreglo reseteado.");
-        }
-    }
+
     
     @Override
     public void generarImporteFinal(JTextField txt) {
@@ -69,7 +63,4 @@ public class C_Producto_Arreglo implements C_Producto {
         txt.setText(""+suma);
     }
     
-    public Estructuras_de_Datos.Arreglo getArregloInterno() {
-        return array;
-    }
 }

@@ -38,12 +38,6 @@ public class C_Producto_ListaEnlazada implements C_Producto{
         listProducto.eliminar(producto);
     }
     
-    public void reset() {
-        if (listProducto != null) {
-            listProducto.vaciar();
-            System.out.println("Carrito de Lista Enlazada reseteado.");
-        }
-    }
     
     @Override
     public void llenarTabla(JTable tabla){
@@ -72,8 +66,5 @@ public class C_Producto_ListaEnlazada implements C_Producto{
         txt.setText(""+suma);
     }
     
-    public Estructuras_de_Datos.ListaEnlazada getListaInterna() {
-        return listProducto;
-    }
     
 }
