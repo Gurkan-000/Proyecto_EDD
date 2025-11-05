@@ -1,42 +1,42 @@
-
 package Vista;
 
 /**
  *
  * @author RODRIGO
  */
-
-import Vista.JDialog_CantidadProducto;
-import Vista.Formulario_Compra;
 import Controlador.C_Producto;
 import Modelo.Producto;
-
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import Controlador.C_Producto_Cola;
+import javax.swing.JOptionPane;
 
 public class JDialog_ListCompra extends JDialog {
-    
+
     private C_Producto c_producto;
     private Producto buscado;
-    
+
     private JFrame frame_principal;
-    
+
+    private boolean habilitar_tabla;
+
     public JDialog_ListCompra(JFrame frame_principal, C_Producto c_producto) {
         super(frame_principal, DEFAULT_MODALITY_TYPE);
         initComponents();
         this.c_producto = c_producto;
         this.frame_principal = frame_principal;
-        ponerImagen(BttRegresar, "/flecha.png",50,31);
-        ponerImagen(BttActualizar, "/imagen_editar.png",30,30);
-        ponerImagen(BttEliminar, "/eliminar.png",30,30);
+        ponerImagen(BttRegresar, "/flecha.png", 50, 31);
+        ponerImagen(BttActualizar, "/imagen_editar.png", 30, 30);
+        ponerImagen(BttEliminar, "/eliminar.png", 30, 30);
         visibilidadComp1(false);
         visibilidadComp2(false);
         c_producto.llenarTabla(tabla_info);
+        habilitar_tabla = true;
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -180,18 +180,18 @@ public class JDialog_ListCompra extends JDialog {
         Image image = icon.getImage().getScaledInstance(ancho, altura, Image.SCALE_SMOOTH);
         label.setIcon(new ImageIcon(image));
     }
-    
-    private void visibilidadComp1(boolean v){
+
+    private void visibilidadComp1(boolean v) {
         BttEliminar.setVisible(v);
         BttActualizar.setVisible(v);
     }
-    
-    private void visibilidadComp2(boolean v){
+
+    private void visibilidadComp2(boolean v) {
         label_importe.setVisible(v);
         txtImporteTotal.setVisible(v);
         BttComprar.setVisible(!v);
     }
-   
+
     private void BttRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BttRegresarActionPerformed
         this.dispose();
     }//GEN-LAST:event_BttRegresarActionPerformed
@@ -199,33 +199,60 @@ public class JDialog_ListCompra extends JDialog {
     private void BttComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BttComprarActionPerformed
         c_producto.generarImporteFinal(txtImporteTotal);
         visibilidadComp2(true);
+        habilitar_tabla = false;
     }//GEN-LAST:event_BttComprarActionPerformed
 
     private void BttEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BttEliminarActionPerformed
-        c_producto.remover(buscado);
+        // Comprueba si estamos en el controlador de Cola
+        if (c_producto instanceof C_Producto_Cola) {
+            // Llama a remover (que ignorará 'buscado' y eliminará por prioridad)
+            c_producto.remover(null);
+        } else {
+            // Funcionalidad original para Arreglo, Lista y Pila
+            if (buscado != null) {
+                c_producto.remover(buscado);
+                buscado = null; // Deselecciona después de borrar
+            }
+        }
         c_producto.llenarTabla(tabla_info);
-        visibilidadComp1(false);
+        visibilidadComp1(false); // Oculta botones después de la acción
     }//GEN-LAST:event_BttEliminarActionPerformed
 
     private void tabla_infoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_infoMousePressed
-        int fila = tabla_info.rowAtPoint(evt.getPoint());
-        buscado = c_producto.buscarProducto((Integer)tabla_info.getValueAt(fila, 0));
-        visibilidadComp1(true);
+        if (habilitar_tabla) {
+            int fila = tabla_info.rowAtPoint(evt.getPoint());
+            if (fila >= 0) {
+                buscado = c_producto.buscarProducto((Integer) tabla_info.getValueAt(fila, 0));
+                // Si estamos en la Cola, el botón 'X' se activa pero 'buscado' no se usará
+                // para la eliminación, solo para la actualización.
+                visibilidadComp1(true);
+            } else {
+                visibilidadComp1(false);
+                buscado = null;
+            }
+        }else{
+           JOptionPane.showMessageDialog(this, "No se puede editar la transaccion", "", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_tabla_infoMousePressed
 
     private void BttActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BttActualizarActionPerformed
-        int cantidadAnterior = buscado.getCantidad();
-        
-        JDialog_CantidadProducto cantidadProducto = new JDialog_CantidadProducto(frame_principal, buscado);
-        cantidadProducto.setLocationRelativeTo(Formulario_Compra.frame_principal);
-        cantidadProducto.setVisible(true);
-        
-        if(buscado.getCantidad() != 0){
-            c_producto.llenarTabla(tabla_info);
-        }else{
-            buscado.setCantidad(cantidadAnterior);
-        } 
-        
+        if (buscado != null) { // Solo actualiza si hay algo seleccionado
+            int cantidadAnterior = buscado.getCantidad();
+
+            JDialog_CantidadProducto cantidadProducto = new JDialog_CantidadProducto(frame_principal, buscado);
+            cantidadProducto.setLocationRelativeTo(Formulario_Compra.frame_principal);
+            cantidadProducto.setVisible(true);
+
+            if (buscado.getCantidad() != 0) {
+                c_producto.llenarTabla(tabla_info);
+            } else {
+                buscado.setCantidad(cantidadAnterior);
+            }
+        }
+        // Deselecciona y oculta botones después de la acción
+        buscado = null;
+        visibilidadComp1(false);
+
     }//GEN-LAST:event_BttActualizarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

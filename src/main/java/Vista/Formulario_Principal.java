@@ -7,20 +7,21 @@ package Vista;
  */
 
 import java.awt.Image;
-
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
 import Controlador.C_Producto;
 import Controlador.C_Producto_Arreglo;
 import Controlador.C_Producto_ListaEnlazada;
 import Controlador.C_Producto_Pilas;
+import Controlador.C_Producto_Cola; // ¡Importa el nuevo controlador de Cola!
+
 
 public class Formulario_Principal extends JFrame {
 
-    private C_Producto c_producto;
+    // Vuelve a tener una sola variable genérica
+    private C_Producto c_producto; 
 
     public Formulario_Principal() {
         initComponents();
@@ -28,6 +29,7 @@ public class Formulario_Principal extends JFrame {
         ponerImagen(label_fondo, "/fondo_presentacion.jpg");
         this.setResizable(false);
         this.setLocationRelativeTo(null);
+        // Ya no inicializamos los paneles aquí
     }
 
     @SuppressWarnings("unchecked")
@@ -213,13 +215,13 @@ public class Formulario_Principal extends JFrame {
 
     private void ponerPanel(JPanel panel) {
         panel.setSize(730, 600);
-
         panel_contenido.removeAll();
         panel_contenido.add(panel);
         panel_contenido.revalidate();
         panel_contenido.repaint();
     }
 
+    // --- Métodos de botones (Restaurados y Modificados) ---
     
     private void bttListEnlazadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttListEnlazadaActionPerformed
         c_producto = new C_Producto_ListaEnlazada();
@@ -234,19 +236,21 @@ public class Formulario_Principal extends JFrame {
     }//GEN-LAST:event_bttPilaActionPerformed
 
     private void bttArbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttArbolActionPerformed
-
+        // Vacío
     }//GEN-LAST:event_bttArbolActionPerformed
 
     private void bttColaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttColaActionPerformed
-
+        // ¡Implementa la nueva Cola!
+        c_producto = new C_Producto_Cola();
+        Formulario_Compra f_compra = new Formulario_Compra(this,c_producto,"-- Colas --");
+        ponerPanel(f_compra);
     }//GEN-LAST:event_bttColaActionPerformed
 
     private void bttArregloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttArregloActionPerformed
-        c_producto = new C_Producto_Arreglo();
-        Formulario_Compra f_compra = new Formulario_Compra(this,c_producto,"-- Arreglo --");
-        ponerPanel(f_compra);
+       c_producto = new C_Producto_Arreglo();
+       Formulario_Compra f_compra = new Formulario_Compra(this,c_producto,"-- Arreglo --");
+       ponerPanel(f_compra);
     }//GEN-LAST:event_bttArregloActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bttArbol;

@@ -40,8 +40,8 @@ public class C_Producto_Pilas implements C_Producto {
             Object[] datos = new Object[5];
             datos[0] = arrPilas.getPilas()[i].getId();
             datos[1] = arrPilas.getPilas()[i].getNombre();
-            datos[2] = arrPilas.getPilas()[i].getCantidad();
-            datos[3] = arrPilas.getPilas()[i].getPrecio();
+            datos[2] = arrPilas.getPilas()[i].getPrecio();
+            datos[3] = arrPilas.getPilas()[i].getCantidad();
             datos[4] = arrPilas.getPilas()[i].getPrecio() * arrPilas.getPilas()[i].getCantidad();
             dt.addRow(datos);
         }

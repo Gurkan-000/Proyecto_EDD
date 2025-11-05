@@ -38,6 +38,7 @@ public class C_Producto_ListaEnlazada implements C_Producto{
         listProducto.eliminar(producto);
     }
     
+    
     @Override
     public void llenarTabla(JTable tabla){
         DefaultTableModel dt = (DefaultTableModel) tabla.getModel();

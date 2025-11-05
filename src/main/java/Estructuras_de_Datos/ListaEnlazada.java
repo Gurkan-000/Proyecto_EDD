@@ -123,6 +123,11 @@ public class ListaEnlazada {
         }
         return producto;
     }
+
+    public void vaciar() {
+        inicio = null;
+        longitud = 0;
+    }
     
     public String mostrar() {
         String cadena = "";
@@ -135,5 +140,7 @@ public class ListaEnlazada {
 
         return cadena;
     }
+
+    
 
 }
