@@ -52,6 +52,7 @@ public class C_Producto_Arreglo implements C_Producto {
         
     }
 
+    
     @Override
     public void generarImporteFinal(JTextField txt) {
         double suma = 0;
@@ -60,5 +61,5 @@ public class C_Producto_Arreglo implements C_Producto {
         }
         txt.setText(""+suma);
     }
-
+    
 }

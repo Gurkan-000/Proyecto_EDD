@@ -64,6 +64,9 @@ public class Arreglo {
         }
     }
 
+    public void vaciar() {
+        ultIndice = -1;
+    }
     public String mostrar(){
         String cadena = "";
         for(int i=0 ; i<=ultIndice ; i++){
