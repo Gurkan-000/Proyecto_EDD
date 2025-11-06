@@ -11,7 +11,7 @@ public class C_Producto_Cola implements C_Producto {
     private Cola cola;
 
     public C_Producto_Cola() {
-        cola = new Cola(100); // Creamos una cola con 100 espacios
+        cola = new Cola(100);
     }
 
     @Override
@@ -21,20 +21,12 @@ public class C_Producto_Cola implements C_Producto {
 
     @Override
     public void insertar(Producto producto) {
-        cola.incluir(producto); // Inserta al final (FIFO)
+        cola.incluir(producto);
     }
-
-    /**
-     * MÉTODO MODIFICADO:
-     * ¡Ignora el producto seleccionado y elimina por prioridad!
-     * El botón "X" del carrito llamará a este método.
-     */
     @Override
     public void remover(Producto producto) {
-        // Ignoramos el 'producto' que nos pasan (que sería el 'buscado')
-        // y llamamos al método especial de la cola.
-        System.out.println("Removiendo por prioridad (Precio/u más alto)...");
-        cola.eliminarPorPrioridad();
+
+    cola.eliminar();
     }
 
     @Override
