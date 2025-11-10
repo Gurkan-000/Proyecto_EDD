@@ -21,11 +21,7 @@ public class C_Producto_ListaEnlazada implements C_Producto{
     
     @Override
     public Producto buscarProducto(int id){
-        int i = 0;
-        while(i<listProducto.longitud && listProducto.retornar(i).getId() != id){
-            i++;
-        }
-        return listProducto.retornar(i);
+        return listProducto.buscar(id);
     }
     
     @Override

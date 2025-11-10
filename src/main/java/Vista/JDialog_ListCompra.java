@@ -6,8 +6,6 @@ package Vista;
  * @author RODRIGO
  */
 
-import Vista.JDialog_CantidadProducto;
-import Vista.Formulario_Compra;
 import Controlador.C_Producto;
 import Modelo.Producto;
 
@@ -16,6 +14,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class JDialog_ListCompra extends JDialog {
     
@@ -24,6 +23,8 @@ public class JDialog_ListCompra extends JDialog {
     
     private JFrame frame_principal;
     
+    private boolean habilitar; 
+
     public JDialog_ListCompra(JFrame frame_principal, C_Producto c_producto) {
         super(frame_principal, DEFAULT_MODALITY_TYPE);
         initComponents();
@@ -32,9 +33,11 @@ public class JDialog_ListCompra extends JDialog {
         ponerImagen(BttRegresar, "/flecha.png",50,31);
         ponerImagen(BttActualizar, "/imagen_editar.png",30,30);
         ponerImagen(BttEliminar, "/eliminar.png",30,30);
-        visibilidadComp1(false);
-        visibilidadComp2(false);
+
+        visibilidadDeComponentes();
+
         c_producto.llenarTabla(tabla_info);
+        habilitar = true;
     }
     
     @SuppressWarnings("unchecked")
@@ -181,36 +184,53 @@ public class JDialog_ListCompra extends JDialog {
         label.setIcon(new ImageIcon(image));
     }
     
-    private void visibilidadComp1(boolean v){
-        BttEliminar.setVisible(v);
-        BttActualizar.setVisible(v);
+    private void visibilidadDeComponentes(){
+        BttEliminar.setVisible(false);
+        BttActualizar.setVisible(false);
+        label_importe.setVisible(false);
+        txtImporteTotal.setVisible(false);
+        BttComprar.setVisible(true);    
     }
     
-    private void visibilidadComp2(boolean v){
-        label_importe.setVisible(v);
-        txtImporteTotal.setVisible(v);
-        BttComprar.setVisible(!v);
-    }
-   
     private void BttRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BttRegresarActionPerformed
         this.dispose();
     }//GEN-LAST:event_BttRegresarActionPerformed
 
     private void BttComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BttComprarActionPerformed
-        c_producto.generarImporteFinal(txtImporteTotal);
-        visibilidadComp2(true);
+        if(tabla_info.getModel().getRowCount() != 0){
+            c_producto.generarImporteFinal(txtImporteTotal);
+    
+            label_importe.setVisible(true);
+            txtImporteTotal.setVisible(true);
+            BttComprar.setVisible(false);
+
+            BttActualizar.setVisible(false);
+            BttEliminar.setVisible(false);
+
+            habilitar = false;
+        }else{
+            JOptionPane.showMessageDialog(this, "La tabla esta vacia", "Error de compra", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_BttComprarActionPerformed
 
     private void BttEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BttEliminarActionPerformed
         c_producto.remover(buscado);
         c_producto.llenarTabla(tabla_info);
-        visibilidadComp1(false);
+
+        BttEliminar.setVisible(false);
+        BttActualizar.setVisible(false);
+
     }//GEN-LAST:event_BttEliminarActionPerformed
 
     private void tabla_infoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_infoMousePressed
-        int fila = tabla_info.rowAtPoint(evt.getPoint());
-        buscado = c_producto.buscarProducto((Integer)tabla_info.getValueAt(fila, 0));
-        visibilidadComp1(true);
+        if(habilitar){
+            int fila = tabla_info.rowAtPoint(evt.getPoint());
+            buscado = c_producto.buscarProducto((Integer)tabla_info.getValueAt(fila, 0));
+            BttEliminar.setVisible(true);
+            BttActualizar.setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(this, "No se puede modificar la compra", "", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_tabla_infoMousePressed
 
     private void BttActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BttActualizarActionPerformed
@@ -226,7 +246,8 @@ public class JDialog_ListCompra extends JDialog {
             buscado.setCantidad(cantidadAnterior);
         } 
         
-        visibilidadComp1(false);
+        BttEliminar.setVisible(false);
+        BttActualizar.setVisible(false);
     }//GEN-LAST:event_BttActualizarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

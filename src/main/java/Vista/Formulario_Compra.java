@@ -2,7 +2,6 @@
 package Vista;
 
 import Controlador.C_Producto;
-import Controlador.C_Producto_ListaEnlazada;
 import Modelo.Tienda;
 
 import javax.swing.JFrame;
