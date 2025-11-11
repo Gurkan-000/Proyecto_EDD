@@ -59,10 +59,6 @@ public class C_Producto_Cola implements C_Producto {
     @Override
     public void generarImporteFinal(JTextField txt) {
         double suma = 0;
-        if (cola.estaVacia()) {
-            txt.setText("0.0");
-            return;
-        }
         Producto[] productos = cola.getCola();
         for (int i = cola.getFirst(); i <= cola.getLast(); i++) {
             suma += productos[i].getCantidad() * productos[i].getPrecio();

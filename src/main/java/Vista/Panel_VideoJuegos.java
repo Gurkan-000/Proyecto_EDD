@@ -1,8 +1,6 @@
 
 package Vista;
 
-import Vista.JDialog_CantidadProducto;
-import Vista.Formulario_Compra;
 import Controlador.C_Producto;
 import Modelo.Producto;
 import Modelo.Tienda;
@@ -34,8 +32,8 @@ public class Panel_VideoJuegos extends JPanel implements ActionListener {
 
         ponerImagen(game1, "/Img_Games/deepRock.png",200,90);
         ponerImagen(game2, "/Img_Games/counterStrike.png",200,90);
-        ponerImagen(game3, "/Img_Games/rust.PNG",200,90);
-        ponerImagen(game4, "/Img_Games/sky.PNG",200,90);
+        ponerImagen(game3, "/Img_Games/rust.png",200,90);
+        ponerImagen(game4, "/Img_Games/sky.png",200,90);
 
         botonEvent();
 

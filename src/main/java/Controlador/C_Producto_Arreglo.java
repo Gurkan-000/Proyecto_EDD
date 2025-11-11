@@ -22,7 +22,7 @@ public class C_Producto_Arreglo implements C_Producto {
 
     @Override
     public Producto buscarProducto(int id) {
-        return array.retornar(id);
+        return array.buscar(id);
     }
 
     @Override

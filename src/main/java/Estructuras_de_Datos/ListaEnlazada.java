@@ -110,12 +110,12 @@ public class ListaEnlazada {
         return val;
     }
 
-    public Producto retornar(int i){
+    public Producto retornar(int indice){
         Producto producto = null;
-        if(inicio != null && i<longitud){
+        if(inicio != null && indice<longitud){
             p = inicio;
             int contador = 0;
-            while(contador<i){
+            while(contador < indice){
                 p = p.getSiguiente();
                 contador++;
             }
@@ -124,9 +124,24 @@ public class ListaEnlazada {
         return producto;
     }
 
-    public void vaciar() {
-        inicio = null;
-        longitud = 0;
+    public Producto buscar(int id){
+        Producto producto = null;
+        
+        if(inicio != null){
+
+            p = inicio;
+
+            while(p.getSiguiente() != null && p.getProducto().getId() != id){
+                p = p.getSiguiente();
+            }
+
+            if(p.getProducto().getId() == id){
+                producto = p.getProducto();
+            }
+
+        }
+
+        return producto;
     }
     
     public String mostrar() {

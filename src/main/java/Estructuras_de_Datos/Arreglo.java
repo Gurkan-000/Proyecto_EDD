@@ -28,7 +28,7 @@ public class Arreglo {
         }
     }
 
-    public Producto retornar(int id){
+    public Producto buscar(int id){
         int i=0;
         boolean val = true;
         Producto producto = null;
@@ -75,34 +75,31 @@ public class Arreglo {
         return cadena;
     }
 
-
-    public static void main(String[] args) {
+    // public static void main(String[] args) {
         
-        Producto p1 = new Producto(1, "Pepe", 1, 1);
-        Producto p2 = new Producto(2, "Toto", 1, 1);
-        Producto p3 = new Producto(3, "Tita", 1, 1);
-        Producto p4 = new Producto(4, "Tito", 1, 1);
-        Producto p5 = new Producto(5, "Titi", 1, 1);
-        Producto p6 = new Producto(5, "Tula", 1, 1);
+    //     Producto p1 = new Producto(1, "Pepe", 1, 1);
+    //     Producto p2 = new Producto(2, "Toto", 1, 1);
+    //     Producto p3 = new Producto(3, "Tita", 1, 1);
+    //     Producto p4 = new Producto(4, "Tito", 1, 1);
+    //     Producto p5 = new Producto(5, "Titi", 1, 1);
+    //     Producto p6 = new Producto(5, "Tula", 1, 1);
 
-        Producto[] array = new Producto[5];
+    //     Producto[] array = new Producto[5];
 
-        Arreglo arreglo = new Arreglo(array);
+    //     Arreglo arreglo = new Arreglo(array);
 
-        arreglo.insertar(p1);
-        // arreglo.insertar(p2);
-        // arreglo.insertar(p3);
-        // arreglo.insertar(p4);
-        // arreglo.insertar(p5);
-        // arreglo.insertar(p6);
+    //     arreglo.insertar(p1);
+    //     // arreglo.insertar(p2);
+    //     // arreglo.insertar(p3);
+    //     // arreglo.insertar(p4);
+    //     // arreglo.insertar(p5);
+    //     // arreglo.insertar(p6);
 
-        System.out.println(arreglo.mostrar());
+    //     System.out.println(arreglo.mostrar());
 
-        arreglo.eliminar(p1);
+    //     arreglo.eliminar(p1);
 
-        System.out.println(arreglo.mostrar());
+    //     System.out.println(arreglo.mostrar());
 
-    }
-
-
+    // }
 }

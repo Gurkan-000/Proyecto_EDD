@@ -12,10 +12,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import Controlador.C_Producto;
+
 import Controlador.C_Producto_Arreglo;
 import Controlador.C_Producto_ListaEnlazada;
 import Controlador.C_Producto_Pilas;
-import Controlador.C_Producto_Cola; // ¡Importa el nuevo controlador de Cola!
+import Controlador.C_Producto_Cola;
 
 
 public class Formulario_Principal extends JFrame {
