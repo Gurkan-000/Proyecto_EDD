@@ -5,6 +5,7 @@ package Vista;
  * @author RODRIGO
  */
 
+
 import Controlador.C_Producto;
 import Modelo.Producto;
 import java.awt.Image;
@@ -29,11 +30,6 @@ public class JDialog_ListCompra extends JDialog {
         initComponents();
         this.c_producto = c_producto;
         this.frame_principal = frame_principal;
-        
-        ponerImagen(BttRegresar, "/flecha.png", 50, 31);
-        ponerImagen(BttActualizar, "/imagen_editar.png", 30, 30);
-        ponerImagen(BttEliminar, "/eliminar.png", 30, 30);
-        
         c_producto.llenarTabla(tabla_info);
 
         ponerImagen(BttRegresar, "/flecha.png",50,31);
@@ -197,7 +193,7 @@ public class JDialog_ListCompra extends JDialog {
         txtImporteTotal.setVisible(false);
         BttComprar.setVisible(true);    
     }
-    
+   
     private void BttRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BttRegresarActionPerformed
         this.dispose();
     }//GEN-LAST:event_BttRegresarActionPerformed

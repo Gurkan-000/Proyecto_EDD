@@ -40,18 +40,29 @@ public class Cola {
     }
    
     public void incluir(Producto producto) {
+
         if (!estaLlena()) {
-            last++;
-            cola[last] = producto;
-            if (first == -1) {
+            if (estaVacia()) {
                 first = 0;
+                last = 0;
+                cola[0] = producto;
+            } else {
+
+                int i;
+                for (i = last; i >= first && cola[i].getPrecio() <= producto.getPrecio(); i--) {
+                    cola[i + 1] = cola[i];
+                }
+                cola[i + 1] = producto;
+                last++;
             }
+
         } else {
             System.out.println("La cola está llena.");
         }
+        
     }
 
-    public Producto eliminarFIFO() {
+    public Producto eliminar() {
         Producto valor = null;
         if (!estaVacia()) {
             valor = cola[first];
@@ -60,40 +71,6 @@ public class Cola {
                 colaVacia();
         }
         return valor;
-    }
-
-    public Producto eliminarPorPrioridad() {
-        Producto productoEliminado = null; 
-
-        if (!estaVacia()) {
-            int indiceMax = first;
-            double precioMax = cola[first].getPrecio();
-
-            for (int i = first + 1; i <= last; i++) {
-                if (cola[i].getPrecio() > precioMax) {
-                    precioMax = cola[i].getPrecio();
-                    indiceMax = i;
-                }
-            }
-
-            productoEliminado = cola[indiceMax]; 
-
-          
-            for (int i = indiceMax; i < last; i++) {
-                cola[i] = cola[i + 1];
-            }
-
-            
-            cola[last] = null;
-            last--;
-
-         
-            if (last < first) {
-                colaVacia();
-            }
-        }
-
-        return productoEliminado; 
     }
 
     public Producto buscarPorId(int id) {
