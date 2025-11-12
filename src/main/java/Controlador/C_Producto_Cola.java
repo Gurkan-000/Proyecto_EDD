@@ -1,10 +1,12 @@
 package Controlador;
 
 import Modelo.Producto;
-import Estructuras_de_Datos.Cola; // Importa la nueva clase Cola
+
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+
+import Estructuras_de_Datos.Cola.Cola;
 
 public class C_Producto_Cola implements C_Producto {
 
@@ -23,10 +25,10 @@ public class C_Producto_Cola implements C_Producto {
     public void insertar(Producto producto) {
         cola.incluir(producto);
     }
+
     @Override
     public void remover(Producto producto) {
-
-    cola.eliminar();
+        cola.eliminar();
     }
 
     @Override
@@ -34,7 +36,8 @@ public class C_Producto_Cola implements C_Producto {
         DefaultTableModel dt = (DefaultTableModel) tabla.getModel();
         dt.setRowCount(0);
 
-        if (cola.estaVacia()) return;
+        if (cola.estaVacia())
+            return;
 
         Producto[] productos = cola.getCola();
         for (int i = cola.getFirst(); i <= cola.getLast(); i++) {

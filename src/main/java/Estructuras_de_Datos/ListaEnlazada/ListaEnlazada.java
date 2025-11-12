@@ -1,4 +1,4 @@
-package Estructuras_de_Datos;
+package Estructuras_de_Datos.ListaEnlazada;
 
 /**
  *

@@ -6,7 +6,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-import Estructuras_de_Datos.Arreglo;
+import Estructuras_de_Datos.Arreglo.Arreglo;
 
 /**
  *
@@ -40,7 +40,7 @@ public class C_Producto_Arreglo implements C_Producto {
         DefaultTableModel dt = (DefaultTableModel) tabla.getModel();
         dt.setRowCount(0);
 
-        for(int i=0 ; i<=array.ultIndice ; i++){
+        for (int i = 0; i <= array.ultIndice; i++) {
             Object[] datos = new Object[5];
             datos[0] = array.getArreglo()[i].getId();
             datos[1] = array.getArreglo()[i].getNombre();
@@ -49,17 +49,16 @@ public class C_Producto_Arreglo implements C_Producto {
             datos[4] = array.getArreglo()[i].getPrecio() * array.getArreglo()[i].getCantidad();
             dt.addRow(datos);
         }
-        
+
     }
 
-    
     @Override
     public void generarImporteFinal(JTextField txt) {
         double suma = 0;
-        for(int i=0 ; i<=array.ultIndice ; i++){
-            suma+=array.getArreglo()[i].getPrecio() * array.getArreglo()[i].getCantidad();
+        for (int i = 0; i <= array.ultIndice; i++) {
+            suma += array.getArreglo()[i].getPrecio() * array.getArreglo()[i].getCantidad();
         }
-        txt.setText(""+suma);
+        txt.setText("" + suma);
     }
-    
+
 }

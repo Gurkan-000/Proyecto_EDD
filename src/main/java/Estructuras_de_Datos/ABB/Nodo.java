@@ -12,8 +12,6 @@ public class Nodo {
     
     private Producto producto;
     
-    private Nodo siguiente;
-    
     private Nodo izquierda, derecha;
     
     public Nodo (Producto producto){
@@ -26,14 +24,6 @@ public class Nodo {
 
     public void setProducto(Producto producto) {
         this.producto = producto;
-    }
-
-    public Nodo getSiguiente() {
-        return siguiente;
-    }
-
-    public void setSiguiente(Nodo siguiente) {
-        this.siguiente = siguiente;
     }
 
     public Nodo getIzquierda() {

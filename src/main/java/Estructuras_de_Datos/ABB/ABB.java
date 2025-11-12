@@ -4,7 +4,6 @@
  */
 package Estructuras_de_Datos.ABB;
 
-import Estructuras_de_Datos.ABB.Nodo;
 import Modelo.Producto;
 
 /**
@@ -12,10 +11,13 @@ import Modelo.Producto;
  * @author JOSE
  */
 public class ABB {
-    private Nodo raiz,p;
+
+    private Nodo raiz, p;
+
     public ABB() {
-        raiz=null;
+        raiz = null;
     }
+
     public void insertarNodo(Producto producto) {
         Nodo nuevo = new Nodo(producto);
         if (raiz == null)
@@ -30,30 +32,32 @@ public class ABB {
         if (p == null)
             p = nuevo;
         else {
-            int idNuevo=nuevo.getProducto().getId();
-            int idActual=p.getProducto().getId();
-            if (idNuevo<idActual) {
-                if(p.getIzquierda()==null)
+            int idNuevo = nuevo.getProducto().getId();
+            int idActual = p.getProducto().getId();
+            if (idNuevo < idActual) {
+                if (p.getIzquierda() == null)
                     p.setIzquierda(nuevo);
-                else 
+                else
                     insertarNodoR(p.getIzquierda(), nuevo);
             } else {
-             if(p.getDerecha()==null)
+                if (p.getDerecha() == null)
                     p.setDerecha(nuevo);
-                else 
+                else
                     insertarNodoR(p.getDerecha(), nuevo);
             }
         }
     }
+
     public Nodo buscar(int id) {
         return buscarR(raiz, id);
     }
-    private Nodo buscarR(Nodo p,int id) {
-         Nodo resultado = null; // un solo return
-        
+
+    private Nodo buscarR(Nodo p, int id) {
+        Nodo resultado = null;
+
         if (p != null) {
             int idActual = p.getProducto().getId();
-            
+
             if (id == idActual) {
                 resultado = p;
             } else if (id < idActual) {
@@ -64,37 +68,33 @@ public class ABB {
         }
         return resultado;
     }
-    
+
     public void eliminar(int id) {
         raiz = eliminarR(raiz, id);
     }
 
     private Nodo eliminarR(Nodo p, int id) {
-        if (p == null) {
-            return null;
-        }
 
-        int idActual = p.getProducto().getId();
+        if (p != null) {
+            int idActual = p.getProducto().getId();
 
-        if (id < idActual) {
-            p.setIzquierda(eliminarR(p.getIzquierda(), id));
-        } else if (id > idActual){
-            p.setDerecha(eliminarR(p.getDerecha(), id));
-        } else {
-            
-            if (p.getIzquierda() == null && p.getDerecha() == null) {
-                p = null;
-            }
-            else if (p.getIzquierda() == null) {
-                p = p.getDerecha();
-            }
-            else if (p.getDerecha() == null) {
-                p = p.getIzquierda();
-            }
-            else {
-                Nodo sucesor = encontrarMinimo(p.getDerecha()); 
-                p.setProducto(sucesor.getProducto()); 
-                p.setDerecha(eliminarR(p.getDerecha(), sucesor.getProducto().getId()));
+            if (id < idActual) {
+                p.setIzquierda(eliminarR(p.getIzquierda(), id));
+            } else if (id > idActual) {
+                p.setDerecha(eliminarR(p.getDerecha(), id));
+            } else {
+
+                if (p.getIzquierda() == null && p.getDerecha() == null) {
+                    p = null;
+                } else if (p.getIzquierda() == null) {
+                    p = p.getDerecha();
+                } else if (p.getDerecha() == null) {
+                    p = p.getIzquierda();
+                } else {
+                    Nodo sucesor = encontrarMinimo(p.getDerecha());
+                    p.setProducto(sucesor.getProducto());
+                    p.setDerecha(eliminarR(p.getDerecha(), sucesor.getProducto().getId()));
+                }
             }
         }
 
@@ -122,6 +122,5 @@ public class ABB {
     public void setP(Nodo p) {
         this.p = p;
     }
-    
-   
+
 }

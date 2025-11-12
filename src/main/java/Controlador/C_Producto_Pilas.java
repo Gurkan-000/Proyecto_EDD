@@ -6,7 +6,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-import Estructuras_de_Datos.Pilas;
+import Estructuras_de_Datos.Pila.Pilas;
 
 public class C_Producto_Pilas implements C_Producto {
     

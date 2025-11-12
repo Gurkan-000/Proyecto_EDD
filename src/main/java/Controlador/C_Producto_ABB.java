@@ -12,7 +12,8 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *comentario
+ * comentario
+ * 
  * @author JOSE
  */
 public class C_Producto_ABB implements C_Producto {
@@ -71,7 +72,8 @@ public class C_Producto_ABB implements C_Producto {
         calcularImporte(arbol.getRaiz(), suma);
         txt.setText(String.valueOf(suma[0]));
     }
-     private void calcularImporte(Nodo p, double[] suma) {
+
+    private void calcularImporte(Nodo p, double[] suma) {
         if (p != null) {
             calcularImporte(p.getIzquierda(), suma);
             Producto prod = p.getProducto();

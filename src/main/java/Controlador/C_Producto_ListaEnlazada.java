@@ -2,10 +2,12 @@
 package Controlador;
 
 import Modelo.Producto;
-import Estructuras_de_Datos.ListaEnlazada;
+
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+
+import Estructuras_de_Datos.ListaEnlazada.ListaEnlazada;
 
 /**
  *

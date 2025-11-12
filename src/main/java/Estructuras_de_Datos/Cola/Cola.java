@@ -1,8 +1,9 @@
-package Estructuras_de_Datos;
+package Estructuras_de_Datos.Cola;
 
 import Modelo.Producto;
 
 public class Cola {
+
     private Producto cola[];
     private int first, last;
     private int tamaño;
@@ -26,7 +27,6 @@ public class Cola {
         return last == tamaño - 1;
     }
 
-
     public Producto[] getCola() {
         return cola;
     }
@@ -38,7 +38,7 @@ public class Cola {
     public int getLast() {
         return last;
     }
-   
+
     public void incluir(Producto producto) {
 
         if (!estaLlena()) {
@@ -56,10 +56,8 @@ public class Cola {
                 last++;
             }
 
-        } else {
-            System.out.println("La cola está llena.");
-        }
-        
+        } 
+
     }
 
     public Producto eliminar() {
@@ -74,7 +72,7 @@ public class Cola {
     }
 
     public Producto buscarPorId(int id) {
-        Producto encontrado = null; 
+        Producto encontrado = null;
         if (!estaVacia()) {
             boolean seguirBuscando = true;
             int i = first;

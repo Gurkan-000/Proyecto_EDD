@@ -1,5 +1,5 @@
 
-package Estructuras_de_Datos;
+package Estructuras_de_Datos.Arreglo;
 
 import Modelo.Producto;
 
@@ -10,7 +10,7 @@ import Modelo.Producto;
 public class Arreglo {
 
     private Producto[] array;
-    public int ultIndice; //Marcara el ultimo ultIndice
+    public int ultIndice; 
 
     public Arreglo(Producto[] array) {
         this.array = array;
@@ -51,7 +51,6 @@ public class Arreglo {
             for(int i=0 ; i<ultIndice; i++){
                 val = array[i].equals(producto) ? true : val;
                 if(val){
-                    System.out.println(""+array[i]+array[i+1]);
                     array[i] = array[i+1];
                     val = true;
                 }

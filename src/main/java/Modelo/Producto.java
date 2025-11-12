@@ -6,12 +6,14 @@ package Modelo;
  * @author RODRIGO
  */
 public class Producto {
-    
+
     private int id;
     private String nombre;
     private int cantidad;
     private double precio;
-    public Producto() {}
+
+    public Producto() {
+    }
 
     public Producto(int id, String nombre, int cantidad, double precio) {
         this.id = id;
@@ -19,7 +21,7 @@ public class Producto {
         this.cantidad = cantidad;
         this.precio = precio;
     }
-    
+
     public int getId() {
         return id;
     }
@@ -56,5 +58,5 @@ public class Producto {
     public String toString() {
         return "Producto{" + "id=" + id + ", nombre=" + nombre + ", cantidad=" + cantidad + ", precio=" + precio + '}';
     }
-       
+
 }
