@@ -22,6 +22,13 @@ public class C_Producto_ABB implements C_Producto {
 
     public C_Producto_ABB() {
         arbol = new ABB();
+        llenarArbol();
+    }
+
+    private void llenarArbol(){
+        insertar(new Producto(3,"Rust",1,25.0));
+        insertar(new Producto(1,"Deep Rock",2,33.0));
+        insertar(new Producto(5,"R.E.P.O",1,15.0));
     }
 
     @Override

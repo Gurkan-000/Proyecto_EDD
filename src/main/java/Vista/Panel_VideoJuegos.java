@@ -22,7 +22,6 @@ import javax.swing.JOptionPane;
  */
 public class Panel_VideoJuegos extends JPanel implements ActionListener {
 
-
     private C_Producto c_producto;
     private Tienda tienda;
     private Producto producto;
@@ -34,19 +33,15 @@ public class Panel_VideoJuegos extends JPanel implements ActionListener {
         ponerImagen(game2, "/Img_Games/counterStrike.png",200,90);
         ponerImagen(game3, "/Img_Games/rust.png",200,90);
         ponerImagen(game4, "/Img_Games/sky.png",200,90);
+        ponerImagen(game5, "/Img_Games/R.E.P.O.png",200,90);
+        ponerImagen(game6, "/Img_Games/palword.png",200,90);
+        ponerImagen(game7, "/Img_Games/peak.png",200,90);
 
         botonEvent();
 
-        this.setPreferredSize(new Dimension(640, 1000));
+        this.setPreferredSize(new Dimension(640, 1050));
         this.c_producto = c_producto;
         this.tienda = tienda;
-    }
-    
-    /**
-     * MÉTODO NUEVO: Para que Formulario_Compra actualice este panel.
-     */
-    public void setControlador(C_Producto c_producto) {
-        this.c_producto = c_producto;
     }
     
     private void botonEvent() {
@@ -54,6 +49,9 @@ public class Panel_VideoJuegos extends JPanel implements ActionListener {
         game2.addActionListener(this);
         game3.addActionListener(this);
         game4.addActionListener(this);
+        game5.addActionListener(this);
+        game6.addActionListener(this);
+        game7.addActionListener(this);
     }
 
     private void ponerImagen(JButton boton, String URL, int ancho, int altura) {
@@ -108,6 +106,15 @@ public class Panel_VideoJuegos extends JPanel implements ActionListener {
         game2 = new javax.swing.JButton();
         game3 = new javax.swing.JButton();
         game4 = new javax.swing.JButton();
+        game5 = new javax.swing.JButton();
+        game6 = new javax.swing.JButton();
+        label_game5 = new javax.swing.JLabel();
+        label_game6 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        game7 = new javax.swing.JButton();
+        label_game7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         jLabel7.setText("jLabel1");
 
@@ -117,7 +124,7 @@ public class Panel_VideoJuegos extends JPanel implements ActionListener {
         label_game4.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         label_game4.setForeground(new java.awt.Color(255, 255, 255));
         label_game4.setText("Sky");
-        add(label_game4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 480, -1, -1));
+        add(label_game4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 490, -1, -1));
 
         label_game1.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         label_game1.setForeground(new java.awt.Color(255, 255, 255));
@@ -132,12 +139,12 @@ public class Panel_VideoJuegos extends JPanel implements ActionListener {
         label_game3.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         label_game3.setForeground(new java.awt.Color(255, 255, 255));
         label_game3.setText("Rust");
-        add(label_game3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 340, -1, -1));
+        add(label_game3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 350, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("S/. 44.00");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 510, 80, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 520, 80, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -152,7 +159,7 @@ public class Panel_VideoJuegos extends JPanel implements ActionListener {
         jLabel4.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("S/. 25.00");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 370, 80, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 380, 80, -1));
 
         game1.setBackground(new java.awt.Color(24, 32, 40));
         game1.setText("0");
@@ -170,13 +177,61 @@ public class Panel_VideoJuegos extends JPanel implements ActionListener {
         game3.setText("2");
         game3.setBorderPainted(false);
         game3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        add(game3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, 200, 90));
+        add(game3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, 200, 90));
 
         game4.setBackground(new java.awt.Color(24, 32, 40));
         game4.setText("3");
         game4.setBorderPainted(false);
         game4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         add(game4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 480, 200, 90));
+
+        game5.setBackground(new java.awt.Color(24, 32, 40));
+        game5.setText("4");
+        game5.setBorderPainted(false);
+        game5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        add(game5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 620, 200, 90));
+
+        game6.setBackground(new java.awt.Color(24, 32, 40));
+        game6.setText("5");
+        game6.setBorderPainted(false);
+        game6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        add(game6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 760, 200, 90));
+
+        label_game5.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        label_game5.setForeground(new java.awt.Color(255, 255, 255));
+        label_game5.setText("R.E.P.O");
+        add(label_game5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 630, -1, -1));
+
+        label_game6.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        label_game6.setForeground(new java.awt.Color(255, 255, 255));
+        label_game6.setText("Palword");
+        add(label_game6, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 770, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("S/. 15.00");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 660, 80, -1));
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("S/. 63.00");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 800, 80, -1));
+
+        game7.setBackground(new java.awt.Color(24, 32, 40));
+        game7.setText("6");
+        game7.setBorderPainted(false);
+        game7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        add(game7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 900, 200, 90));
+
+        label_game7.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        label_game7.setForeground(new java.awt.Color(255, 255, 255));
+        label_game7.setText("Peak");
+        add(label_game7, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 910, -1, -1));
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("S/. 11.00");
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 940, 80, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -184,14 +239,23 @@ public class Panel_VideoJuegos extends JPanel implements ActionListener {
     private javax.swing.JButton game2;
     private javax.swing.JButton game3;
     private javax.swing.JButton game4;
+    private javax.swing.JButton game5;
+    private javax.swing.JButton game6;
+    private javax.swing.JButton game7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel label_game1;
     private javax.swing.JLabel label_game2;
     private javax.swing.JLabel label_game3;
     private javax.swing.JLabel label_game4;
+    private javax.swing.JLabel label_game5;
+    private javax.swing.JLabel label_game6;
+    private javax.swing.JLabel label_game7;
     // End of variables declaration//GEN-END:variables
 }

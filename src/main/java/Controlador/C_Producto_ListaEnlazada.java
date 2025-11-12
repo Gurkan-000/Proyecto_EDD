@@ -19,8 +19,15 @@ public class C_Producto_ListaEnlazada implements C_Producto{
     
     public C_Producto_ListaEnlazada(){
         listProducto = new ListaEnlazada();
+        llenarListaEnlazada();    
     }
     
+    private void llenarListaEnlazada(){
+        insertar(new Producto(3,"Rust",1,25.0));
+        insertar(new Producto(1,"Deep Rock",2,33.0));
+        insertar(new Producto(5,"R.E.P.O",1,15.0));
+    }
+
     @Override
     public Producto buscarProducto(int id){
         return listProducto.buscar(id);
