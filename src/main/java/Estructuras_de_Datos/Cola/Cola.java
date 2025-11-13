@@ -146,7 +146,6 @@ public class Cola {
                     encontrado = colaA[i];
                     seguirBuscando = false;
                 }
-                i++;
             }
         }
 
