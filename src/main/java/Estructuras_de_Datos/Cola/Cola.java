@@ -3,86 +3,155 @@ package Estructuras_de_Datos.Cola;
 import Modelo.Producto;
 
 public class Cola {
-
-    private Producto cola[];
-    private int first, last;
-    private int tamaño;
+   
+    private Producto colaA[]; 
+    private Producto colaB[]; 
+    
+    
+    private int firstA, lastA;
+    private int firstB, lastB;
+    
+    private int tamaño; 
 
     public Cola(int n) {
-        cola = new Producto[n];
         tamaño = n;
-        colaVacia();
+        colaA = new Producto[n];
+        colaB = new Producto[n];
+        colaVacia(); 
     }
 
     public void colaVacia() {
-        first = -1;
-        last = -1;
+        firstA = -1;
+        lastA = -1;
+        firstB = -1;
+        lastB = -1;
     }
 
+    public boolean estaVaciaA() {
+        return firstA == -1;
+    }
+
+    public boolean estaVaciaB() {
+        return firstB == -1;
+    }
+
+   
     public boolean estaVacia() {
-        return first == -1;
+        return estaVaciaA() && estaVaciaB();
     }
 
-    public boolean estaLlena() {
-        return last == tamaño - 1;
+    public boolean estaLlenaA() {
+        return lastA == tamaño - 1;
     }
 
-    public Producto[] getCola() {
-        return cola;
+    public boolean estaLlenaB() {
+        return lastB == tamaño - 1;
     }
 
-    public int getFirst() {
-        return first;
+   
+    public Producto[] getColaA() {
+        return colaA;
+    }
+    public Producto[] getColaB() {
+        return colaB;
+    }
+    public int getFirstA() {
+        return firstA;
+    }
+    public int getLastA() {
+        return lastA;
+    }
+    public int getFirstB() {
+        return firstB;
+    }
+    public int getLastB() {
+        return lastB;
     }
 
-    public int getLast() {
-        return last;
-    }
-
+  
     public void incluir(Producto producto) {
-
-        if (!estaLlena()) {
-            if (estaVacia()) {
-                first = 0;
-                last = 0;
-                cola[0] = producto;
-            } else {
-
-                int i;
-                for (i = last; i >= first && cola[i].getPrecio() <= producto.getPrecio(); i--) {
-                    cola[i + 1] = cola[i];
+        if (producto.getPrecio() > 30) {
+           
+            if (!estaLlenaA()) {
+                lastA++;
+                colaA[lastA] = producto;
+                if (firstA == -1) { 
+                    firstA = 0;
                 }
-                cola[i + 1] = producto;
-                last++;
+            } else {
+                System.out.println("La cola de Alta Prioridad está llena.");
             }
-
-        } 
-
+        } else {
+            
+            if (!estaLlenaB()) {
+                lastB++;
+                colaB[lastB] = producto;
+                if (firstB == -1) {
+                    firstB = 0;
+                }
+            } else {
+                System.out.println("La cola de Baja Prioridad está llena.");
+            }
+        }
     }
 
+   
     public Producto eliminar() {
         Producto valor = null;
-        if (!estaVacia()) {
-            valor = cola[first];
-            first++;
-            if (first > last)
-                colaVacia();
+        
+        if (!estaVaciaA()) {
+           
+            valor = colaA[firstA];
+            firstA++;
+            if (firstA > lastA) { 
+                colaVaciaA();
+            }
+        } else if (!estaVaciaB()) {
+          
+            valor = colaB[firstB];
+            firstB++;
+            if (firstB > lastB) { 
+                colaVaciaB();
+            }
+        } else {
+            System.out.println("Ambas colas están vacías.");
         }
         return valor;
     }
 
+   
+    private void colaVaciaA() {
+        firstA = -1;
+        lastA = -1;
+    }
+    
+    
+    private void colaVaciaB() {
+        firstB = -1;
+        lastB = -1;
+    }
+
+   
     public Producto buscarPorId(int id) {
         Producto encontrado = null;
-        if (!estaVacia()) {
-            boolean seguirBuscando = true;
-            int i = first;
-
-            while (i <= last && seguirBuscando) {
-                if (cola[i].getId() == id) {
-                    encontrado = cola[i];
-                    seguirBuscando = false;
+        
+       
+        if (!estaVaciaA()) {
+            for (int i = firstA; i <= lastA; i++) {
+                if (colaA[i].getId() == id) {
+                    encontrado = colaA[i];
+                    return encontrado; 
                 }
-                i++;
+            }
+        }
+
+      
+        if (encontrado == null && !estaVaciaB()) {
+            for (int i = firstB; i <= lastB; i++) {
+                if (colaB[i].getId() == id) {
+                    encontrado = colaB[i];
+                    return encontrado; 
+                }
             }
         }
 
