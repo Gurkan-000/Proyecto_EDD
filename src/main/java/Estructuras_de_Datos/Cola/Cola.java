@@ -134,27 +134,36 @@ public class Cola {
    
     public Producto buscarPorId(int id) {
         Producto encontrado = null;
-        
+        boolean seguirBuscando = true; 
+        int i;
+
        
         if (!estaVaciaA()) {
-            for (int i = firstA; i <= lastA; i++) {
+            i = firstA;
+           
+            while (i <= lastA && seguirBuscando) {
                 if (colaA[i].getId() == id) {
                     encontrado = colaA[i];
-                    return encontrado; 
+                    seguirBuscando = false;
                 }
+                i++;
             }
         }
 
-      
-        if (encontrado == null && !estaVaciaB()) {
-            for (int i = firstB; i <= lastB; i++) {
+       
+        if (seguirBuscando && !estaVaciaB()) {
+            i = firstB;
+            
+            while (i <= lastB && seguirBuscando) {
                 if (colaB[i].getId() == id) {
                     encontrado = colaB[i];
-                    return encontrado; 
+                    seguirBuscando = false; 
                 }
+                i++;
             }
         }
 
+       
         return encontrado;
     }
 }
