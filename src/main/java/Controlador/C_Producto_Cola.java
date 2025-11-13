@@ -1,12 +1,10 @@
 package Controlador;
 
 import Modelo.Producto;
-
+import Estructuras_de_Datos.Cola.Cola; 
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-
-import Estructuras_de_Datos.Cola.Cola;
 
 public class C_Producto_Cola implements C_Producto {
 
@@ -14,13 +12,6 @@ public class C_Producto_Cola implements C_Producto {
 
     public C_Producto_Cola() {
         cola = new Cola(100);
-        llenarCola();
-    }
-
-    private void llenarCola(){
-        insertar(new Producto(3,"Rust",1,25.0));
-        insertar(new Producto(1,"Deep Rock",2,33.0));
-        insertar(new Producto(5,"R.E.P.O",1,15.0));
     }
 
     @Override
@@ -35,6 +26,7 @@ public class C_Producto_Cola implements C_Producto {
 
     @Override
     public void remover(Producto producto) {
+
         cola.eliminar();
     }
 
@@ -43,28 +35,55 @@ public class C_Producto_Cola implements C_Producto {
         DefaultTableModel dt = (DefaultTableModel) tabla.getModel();
         dt.setRowCount(0);
 
-        if (cola.estaVacia())
-            return;
+      
+        if (!cola.estaVaciaA()) {
+            Producto[] productosA = cola.getColaA();
+            for (int i = cola.getFirstA(); i <= cola.getLastA(); i++) {
+                Object[] datos = new Object[5];
+                datos[0] = productosA[i].getId();
+                datos[1] = productosA[i].getNombre(); 
+                datos[2] = productosA[i].getPrecio();
+                datos[3] = productosA[i].getCantidad();
+                datos[4] = productosA[i].getCantidad() * productosA[i].getPrecio();
+                dt.addRow(datos);
+            }
+        }
 
-        Producto[] productos = cola.getCola();
-        for (int i = cola.getFirst(); i <= cola.getLast(); i++) {
-            Object[] datos = new Object[5];
-            datos[0] = productos[i].getId();
-            datos[1] = productos[i].getNombre();
-            datos[2] = productos[i].getPrecio(); // Precio/u
-            datos[3] = productos[i].getCantidad();
-            datos[4] = productos[i].getCantidad() * productos[i].getPrecio();
-            dt.addRow(datos);
+       
+        if (!cola.estaVaciaB()) {
+            Producto[] productosB = cola.getColaB();
+            for (int i = cola.getFirstB(); i <= cola.getLastB(); i++) {
+                Object[] datos = new Object[5];
+                datos[0] = productosB[i].getId();
+                datos[1] = productosB[i].getNombre();
+                datos[2] = productosB[i].getPrecio();
+                datos[3] = productosB[i].getCantidad();
+                datos[4] = productosB[i].getCantidad() * productosB[i].getPrecio();
+                dt.addRow(datos);
+            }
         }
     }
 
     @Override
     public void generarImporteFinal(JTextField txt) {
         double suma = 0;
-        Producto[] productos = cola.getCola();
-        for (int i = cola.getFirst(); i <= cola.getLast(); i++) {
-            suma += productos[i].getCantidad() * productos[i].getPrecio();
+
+       
+        if (!cola.estaVaciaA()) {
+            Producto[] productosA = cola.getColaA();
+            for (int i = cola.getFirstA(); i <= cola.getLastA(); i++) {
+                suma += productosA[i].getCantidad() * productosA[i].getPrecio();
+            }
         }
+
+     
+        if (!cola.estaVaciaB()) {
+            Producto[] productosB = cola.getColaB();
+            for (int i = cola.getFirstB(); i <= cola.getLastB(); i++) {
+                suma += productosB[i].getCantidad() * productosB[i].getPrecio();
+            }
+        }
+
         txt.setText("" + suma);
     }
 }
