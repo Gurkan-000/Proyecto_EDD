@@ -41,7 +41,7 @@ public class C_Producto_Cola implements C_Producto {
             for (int i = cola.getFirstA(); i <= cola.getLastA(); i++) {
                 Object[] datos = new Object[5];
                 datos[0] = productosA[i].getId();
-                datos[1] = productosA[i].getNombre() + " (Alta Prioridad)"; // Añadimos etiqueta
+                datos[1] = productosA[i].getNombre(); 
                 datos[2] = productosA[i].getPrecio();
                 datos[3] = productosA[i].getCantidad();
                 datos[4] = productosA[i].getCantidad() * productosA[i].getPrecio();
@@ -55,7 +55,7 @@ public class C_Producto_Cola implements C_Producto {
             for (int i = cola.getFirstB(); i <= cola.getLastB(); i++) {
                 Object[] datos = new Object[5];
                 datos[0] = productosB[i].getId();
-                datos[1] = productosB[i].getNombre() + " (Baja Prioridad)"; // Añadimos etiqueta
+                datos[1] = productosB[i].getNombre();
                 datos[2] = productosB[i].getPrecio();
                 datos[3] = productosB[i].getCantidad();
                 datos[4] = productosB[i].getCantidad() * productosB[i].getPrecio();
