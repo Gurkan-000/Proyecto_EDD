@@ -55,10 +55,13 @@ public class Arreglo {
                     val = true;
                 }
             }
+            if(array[ultIndice].equals(producto)){
+                val = true;
+            }
         }
 
         if(val){ // True si se llego a eliminar un elemento
-            array[ultIndice] = null; //Elimina el unico valor del arreglo
+            array[ultIndice] = null; //Establece null en el indice que esta fuera del rango del arreglo dinamico
             ultIndice--;
         }
     }

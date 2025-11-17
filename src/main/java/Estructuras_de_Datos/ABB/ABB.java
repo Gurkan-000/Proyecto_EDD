@@ -102,8 +102,9 @@ public class ABB {
     }
 
     private Nodo encontrarMinimo(Nodo p) {
-        while (p.getIzquierda() != null)
+        while (p.getIzquierda() != null){
             p = p.getIzquierda();
+        }
         return p;
     }
 
