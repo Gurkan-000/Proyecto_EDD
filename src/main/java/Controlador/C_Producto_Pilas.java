@@ -7,6 +7,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import Estructuras_de_Datos.Pila.Pilas;
+import javax.swing.JButton;
 
 public class C_Producto_Pilas implements C_Producto {
     
@@ -25,7 +26,7 @@ public class C_Producto_Pilas implements C_Producto {
 
     @Override
     public Producto buscarProducto(int id) {
-        return arrPilas.buscar(id);
+        return null;
     }
 
     @Override
@@ -63,6 +64,10 @@ public class C_Producto_Pilas implements C_Producto {
         txt.setText(""+suma);
     }
     
-    
+    @Override
+    public void visibilidadBttEliminarActualizar(JButton bttEliminar, JButton bttActualizar, boolean v){
+        bttEliminar.setVisible(true);
+        bttActualizar.setVisible(false);
+    }
     
 }

@@ -2,6 +2,7 @@ package Controlador;
 
 import Modelo.Producto;
 import Estructuras_de_Datos.Cola.Cola;
+import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -16,7 +17,7 @@ public class C_Producto_Cola implements C_Producto {
     
     @Override
     public Producto buscarProducto(int id) {
-        return cola.buscarPorId(id);
+        return null;
     }
 
     @Override
@@ -82,4 +83,11 @@ public class C_Producto_Cola implements C_Producto {
 
         txt.setText("" + suma);
     }
+    
+    @Override
+    public void visibilidadBttEliminarActualizar(JButton bttEliminar, JButton bttActualizar, boolean v){
+        bttEliminar.setVisible(true);
+        bttActualizar.setVisible(false);
+    }
+    
 }

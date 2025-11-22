@@ -7,6 +7,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import Estructuras_de_Datos.Arreglo.Arreglo;
+import javax.swing.JButton;
 
 /**
  *
@@ -51,8 +52,8 @@ public class C_Producto_Arreglo implements C_Producto {
             Object[] datos = new Object[5];
             datos[0] = array.getArreglo()[i].getId();
             datos[1] = array.getArreglo()[i].getNombre();
-            datos[2] = array.getArreglo()[i].getCantidad();
-            datos[3] = array.getArreglo()[i].getPrecio();
+            datos[2] = array.getArreglo()[i].getPrecio();
+            datos[3] = array.getArreglo()[i].getCantidad();
             datos[4] = array.getArreglo()[i].getPrecio() * array.getArreglo()[i].getCantidad();
             dt.addRow(datos);
         }
@@ -66,6 +67,12 @@ public class C_Producto_Arreglo implements C_Producto {
             suma += array.getArreglo()[i].getPrecio() * array.getArreglo()[i].getCantidad();
         }
         txt.setText("" + suma);
+    }
+    
+    @Override
+    public void visibilidadBttEliminarActualizar(JButton bttEliminar, JButton bttActualizar, boolean v){
+        bttEliminar.setVisible(v);
+        bttActualizar.setVisible(v);
     }
 
 }

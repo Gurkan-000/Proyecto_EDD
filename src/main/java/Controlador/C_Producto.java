@@ -5,6 +5,7 @@
 package Controlador;
 
 import Modelo.Producto;
+import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -23,5 +24,7 @@ public interface C_Producto {
     public void llenarTabla(JTable tabla);
     
     public void generarImporteFinal(JTextField txt);
+    
+    public void visibilidadBttEliminarActualizar(JButton bttEliminar, JButton bttActualizar, boolean v);
     
 }

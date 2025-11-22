@@ -7,6 +7,7 @@ package Controlador;
 import Estructuras_de_Datos.ABB.ABB;
 import Estructuras_de_Datos.ABB.Nodo;
 import Modelo.Producto;
+import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -88,4 +89,11 @@ public class C_Producto_ABB implements C_Producto {
             calcularImporte(p.getDerecha(), suma);
         }
     }
+    
+    @Override
+    public void visibilidadBttEliminarActualizar(JButton bttEliminar, JButton bttActualizar, boolean v){
+        bttEliminar.setVisible(v);
+        bttActualizar.setVisible(v);
+    }
+    
 }

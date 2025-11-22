@@ -49,21 +49,6 @@ public class Pilas {
         return producto;
     }
 
-    public Producto buscar(int id) {
-        int i = 0;
-        boolean val = true;
-        Producto producto = null;
-
-        while (i <= tope && val) {
-            if (arrPilas[i].getId() == id) {
-                producto = arrPilas[i];
-                val = false;
-            }
-            i++;
-        }
-        return producto;
-    }
-
     public String muestraArreglo() {
         String cadena = "Pila Vacia";
         if (tope > -1) {

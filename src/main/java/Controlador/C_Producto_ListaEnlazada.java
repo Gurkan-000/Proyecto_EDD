@@ -8,6 +8,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import Estructuras_de_Datos.ListaEnlazada.ListaEnlazada;
+import javax.swing.JButton;
 
 /**
  *
@@ -71,5 +72,10 @@ public class C_Producto_ListaEnlazada implements C_Producto{
         txt.setText(""+suma);
     }
     
-    
+    @Override
+    public void visibilidadBttEliminarActualizar(JButton bttEliminar, JButton bttActualizar, boolean v){
+        bttEliminar.setVisible(v);
+        bttActualizar.setVisible(v);
+    }
+       
 }

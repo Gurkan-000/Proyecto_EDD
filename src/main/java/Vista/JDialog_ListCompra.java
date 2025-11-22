@@ -155,7 +155,7 @@ public class JDialog_ListCompra extends JDialog {
                 BttEliminarActionPerformed(evt);
             }
         });
-        Panel_Principal.add(BttEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 420, 30, 30));
+        Panel_Principal.add(BttEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 420, 30, 30));
 
         BttActualizar.setBorder(null);
         BttActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -164,7 +164,7 @@ public class JDialog_ListCompra extends JDialog {
                 BttActualizarActionPerformed(evt);
             }
         });
-        Panel_Principal.add(BttActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 420, 30, 30));
+        Panel_Principal.add(BttActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 420, 30, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -174,7 +174,7 @@ public class JDialog_ListCompra extends JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Panel_Principal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Panel_Principal, javax.swing.GroupLayout.DEFAULT_SIZE, 522, Short.MAX_VALUE)
         );
 
         pack();
@@ -187,8 +187,7 @@ public class JDialog_ListCompra extends JDialog {
     }
 
     private void visibilidadDeComponentes(){
-        BttEliminar.setVisible(false);
-        BttActualizar.setVisible(false);
+        c_producto.visibilidadBttEliminarActualizar(BttEliminar, BttActualizar, false);
         label_importe.setVisible(false);
         txtImporteTotal.setVisible(false);
         BttComprar.setVisible(true);    
@@ -207,8 +206,7 @@ public class JDialog_ListCompra extends JDialog {
             txtImporteTotal.setVisible(true);
             BttComprar.setVisible(false);
 
-            BttActualizar.setVisible(false);
-            BttEliminar.setVisible(false);
+            c_producto.visibilidadBttEliminarActualizar(BttEliminar, BttActualizar, false);
 
             habilitar = false;
         }else{
@@ -221,16 +219,15 @@ public class JDialog_ListCompra extends JDialog {
         c_producto.remover(buscado);
         c_producto.llenarTabla(tabla_info);
 
-        BttEliminar.setVisible(false);
-        BttActualizar.setVisible(false);
+        c_producto.visibilidadBttEliminarActualizar(BttEliminar, BttActualizar, false);
     }//GEN-LAST:event_BttEliminarActionPerformed
           
     private void tabla_infoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_infoMousePressed
         if(habilitar){
             int fila = tabla_info.rowAtPoint(evt.getPoint());
             buscado = c_producto.buscarProducto((Integer)tabla_info.getValueAt(fila, 0));
-            BttEliminar.setVisible(true);
-            BttActualizar.setVisible(true);
+            
+            c_producto.visibilidadBttEliminarActualizar(BttEliminar, BttActualizar, true);
         }else{
             JOptionPane.showMessageDialog(this, "No se puede modificar la compra", "", JOptionPane.ERROR_MESSAGE);
         }
@@ -250,8 +247,7 @@ public class JDialog_ListCompra extends JDialog {
             buscado.setCantidad(cantidadAnterior);
         } 
         
-        BttEliminar.setVisible(false);
-        BttActualizar.setVisible(false);
+        c_producto.visibilidadBttEliminarActualizar(BttEliminar, BttActualizar, false);
     }//GEN-LAST:event_BttActualizarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -123,35 +123,4 @@ public class Cola {
         lastB = -1;
     }
 
-    public Producto buscarPorId(int id) {
-        Producto encontrado = null;
-        boolean seguirBuscando = true;
-        int i;
-
-        if (!estaVaciaA()) {
-            i = firstA;
-
-            while (i <= lastA && seguirBuscando) {
-                if (colaA[i].getId() == id) {
-                    encontrado = colaA[i];
-                    seguirBuscando = false;
-                }
-                i++;
-            }
-        }
-
-        if (seguirBuscando && !estaVaciaB()) {
-            i = firstB;
-
-            while (i <= lastB && seguirBuscando) {
-                if (colaB[i].getId() == id) {
-                    encontrado = colaB[i];
-                    seguirBuscando = false;
-                }
-                i++;
-            }
-        }
-
-        return encontrado;
-    }
 }
